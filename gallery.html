@@ -141,12 +141,10 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: transform 0.3s ease;
   }
-  .masonry-item.visible {
-    opacity: 1; transform: translateY(0);
+  .masonry-item:hover {
+    transform: translateY(-3px);
   }
   .masonry-item img {
     width: 100%; display: block;
@@ -282,12 +280,13 @@
 
   /* ─── HAMBURGER ─── */
   .hamburger {
-    display: none; flex-direction: column; justify-content: center;
+    flex-direction: column; justify-content: center;
     gap: 5px; background: none; border: none; cursor: pointer;
     padding: 4px; z-index: 200;
+    display: none; /* shown via media query */
   }
   .hamburger span {
-    display: block; width: 24px; height: 2px;
+    display: block; width: 26px; height: 2px;
     background: var(--wine); border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
@@ -546,18 +545,23 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Hamburger menu
+  // Hamburger menu - toggle display directly so CSS can't interfere
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  function toggleMenu(force) {
-    const open = force !== undefined ? force : !hamburger.classList.contains('open');
-    hamburger.classList.toggle('open', open);
-    mobileMenu.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+  let menuOpen = false;
+
+  function toggleMenu(forceClose) {
+    menuOpen = forceClose === true ? false : !menuOpen;
+    hamburger.classList.toggle('open', menuOpen);
+    mobileMenu.style.display = menuOpen ? 'flex' : 'none';
+    mobileMenu.style.opacity = menuOpen ? '1' : '0';
+    mobileMenu.style.visibility = menuOpen ? 'visible' : 'hidden';
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
   }
+
   hamburger.addEventListener('click', () => toggleMenu());
   document.querySelectorAll('.mobile-link').forEach(a => {
-    a.addEventListener('click', () => toggleMenu(false));
+    a.addEventListener('click', () => toggleMenu(true));
   });
 
   // ─── NAV SHRINK ───
@@ -567,19 +571,8 @@
   });
 
   // ─── SCROLL REVEAL ───
-  const items = Array.from(document.querySelectorAll('.masonry-item'));
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const i = items.indexOf(e.target);
-        setTimeout(() => e.target.classList.add('visible'), (i % 6) * 80);
-        revealObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.05 });
-  items.forEach(el => revealObserver.observe(el));
-
   // ─── FILTER ───
+  const items = Array.from(document.querySelectorAll('.masonry-item'));
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
