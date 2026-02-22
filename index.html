@@ -275,13 +275,16 @@
 
 </div><!-- end page-body -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const ham = document.getElementById('hamburger');
-  const drawer = document.getElementById('drawer');
-  ham.addEventListener('click', () => {
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const drawer = document.getElementById('drawer');
     const open = drawer.style.display === 'flex';
     drawer.style.display = open ? 'none' : 'flex';
     document.body.style.overflow = open ? '' : 'hidden';
   });
-  drawer.querySelectorAll('a').forEach(a => {
-  
+  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('drawer').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
