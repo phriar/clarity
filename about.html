@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .about-intro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-intro img {
+    width: 100%; display: block; height: 480px; object-fit: cover;
+  }
+  .about-intro p { margin-bottom: 1rem; }
+
+  .photo-trio {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    margin-top: 3rem;
+  }
+  .photo-trio img { width: 100%; height: 260px; object-fit: cover; display: block; }
+
+  /* Team */
+  .team-section { background: var(--cream); }
+  .team-header { text-align: center; max-width: 560px; margin: 0 auto 4rem; }
+  .team-header .label { justify-content: center; }
+  .team-header .label::before { display: none; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem 5rem; }
+  .member { display: flex; gap: 2rem; align-items: flex-start; }
+  .member-photo {
+    width: 130px; height: 130px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 3px solid var(--blush);
+  }
+  .member-info h3 { margin-bottom: 0.3rem; }
+  .member-role {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.7rem;
+  }
+  .member-info p { font-size: 0.88rem; }
+  .member-link {
+    display: inline-block; margin-top: 0.7rem;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--wine); text-decoration: none;
+    border-bottom: 1px solid var(--blush); padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .member-link:hover { border-color: var(--wine); }
+
+  @media (max-width: 860px) {
+    .about-intro { grid-template-columns: 1fr; gap: 2rem; }
+    .about-intro img { height: 280px; }
+    .photo-trio { grid-template-columns: 1fr 1fr; }
+    .photo-trio img:last-child { display: none; }
+    .team-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .member { flex-direction: column; align-items: center; text-align: center; }
+    .member-photo { width: 110px; height: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a><hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero" style="background-image:none;">
+    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/09/image-7.jpg');"></div>
+    <div class="page-hero-content">
+      <div class="label">Our Story</div>
+      <h1>About <em>Clarity Uncorked</em></h1>
+      <p>Born from the idea that the best conversations don't happen in conference rooms.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="about-intro">
+      <div>
+        <div class="label">The Idea</div>
+        <h2>Embrace transformation amid <em>Bordeaux's charm</em></h2>
+        <p style="margin-top:1.2rem;">Clarity Uncorked was born from the idea that the best conversations — the ones that change us — don't happen in conference rooms. They happen around a table, a glass in hand, in those moments when we drop the script and tell the truth about what's really going on.</p>
+        <p>That's exactly why we created Clarity Uncorked. Picture this: rolling vineyards, strolling local markets, long French dinners, and space to finally exhale.</p>
+        <p>Over days together, we'll uncork old stories, pour out what no longer serves us, and make room for connection, laughter, and clarity.</p>
+        <p>This isn't about quick fixes or self-help homework. It's about creating a retreat that feels like both an adventure and a homecoming — a chance to remember who you are and where you want to go, surrounded by women who get it.</p>
+        <a href="experience.html" class="btn" style="margin-top:1.8rem;">See the Experience</a>
+      </div>
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/3e0f48b424eb15016a861857417702f56ff68ab9.jpg" alt="Retreat atmosphere">
+    </div>
+    <div class="photo-trio">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/5c8bf4572b3aa99a0a4c166161313ac1983d1151.jpg" alt="French countryside">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/The-Dordogne-river-from-Libourne-1-1024x775.jpeg" alt="Dordogne river">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Bottles-of-wine-768x1024.jpg" alt="Bordeaux wines">
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section section-sand team-section">
+    <div class="team-header">
+      <div class="label">Your Guides</div>
+      <h2>The inspiring folk on <em>your journey</em></h2>
+      <p>Meet the people guiding your experience at Clarity Uncorked.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="member">
+        <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Val_Santorini.jpeg" alt="Valerie Rivera">
+        <div class="member-info">
+          <h3>Valerie Rivera</h3>
+          <div class="member-role">Group Facilitator &amp; Local Guide</div>
+          <p>From a military career to earning her MBA at Stanford and founding a company that helps organizations thrive, Valerie's path has been one of courageous reinvention. Based in France, she creates space for women to slow down, savor the moment, and rediscover clarity.</p>
+          <a href="https://www.linkedin.com/in/valeriebrivera/" target="_blank" class="member-link">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Jen_Bio-857x1024.jpg" alt="Jen Holt">
+        <div class="member-info">
+          <h3>Jen Holt</h3>
+          <div class="member-role">Certified Life Coach</div>
+          <p>Founder of Bright Finch Coaching, Jen brings nearly two decades in high-pressure national security and corporate environments and a personal understanding of rebuilding from burnout into alignment. She helps women pause, reflect, and chart new directions.</p>
+          <a href="https://www.linkedin.com/in/jennifer-holt19" target="_blank" class="member-link">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/311E4256-3799-40E7-8CEE-1528805EDDA9_1_105_c.jpeg" alt="Anna">
+        <div class="member-info">
+          <h3>Anna</h3>
+          <div class="member-role">Restaurateur &amp; Cultural Expert</div>
+          <p>Anna moved to France 30 years ago and co-founded Le Dix-Sept, a lively neighbourhood restaurant in the Bordeaux area. Her career spans Franco-British cultural relations, lecturing at the University of Bordeaux, and building her own company.</p>
+          <a href="https://www.instagram.com/restaurantledixsept/" target="_blank" class="member-link">Instagram ↗</a>
+        </div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Michael-bio-768x1024.jpeg" alt="Michael">
+        <div class="member-info">
+          <h3>Michael</h3>
+          <div class="member-role">Executive Chef &amp; Cultural Expert</div>
+          <p>Michael is co-founder and chef of Le Dix-Sept, trained in Alsace, with a background spanning commercial real estate, aviation, and organisational development for British Airways and KPMG. He combines culinary craft with a deep understanding of personal transformation.</p>
+          <a href="https://www.instagram.com/restaurantledixsept/" target="_blank" class="member-link">Instagram ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  ham.addEventListener('click', () => {
+    const open = drawer.style.display === 'flex';
+    drawer.style.display = open ? 'none' : 'flex';
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { drawer.style.display = 'none'; document.body.style.overflow = ''; });
+  });
+</script>
+</body>
+</html>
