@@ -214,10 +214,12 @@
   .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
   .member {
     text-align: center;
-    opacity: 0; transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .member.visible { opacity:1; transform: translateY(0); }
+  .member.will-animate {
+    opacity: 0; transform: translateY(20px);
+  }
+  .member.visible { opacity: 1 !important; transform: translateY(0) !important; }
   .member-photo {
     width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
     margin: 0 auto 1.2rem; display: block;
@@ -344,14 +346,15 @@
 
   /* Mobile drawer */
   .mobile-menu {
-    display: none;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: var(--cream); z-index: 150;
     flex-direction: column; align-items: center; justify-content: center;
-    gap: 2.5rem; opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
+    gap: 2.5rem;
+    opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
   }
-  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu.open { opacity: 1; pointer-events: all; visibility: visible; }
   .mobile-menu a {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2.2rem; font-weight: 300;
@@ -377,7 +380,6 @@
     nav ul { display: none; }
     .nav-cta { display: none; }
     .hamburger { display: flex; }
-    .mobile-menu { display: flex; }
 
     #hero { grid-template-columns: 1fr; padding-top: 70px; }
     .hero-visual { height: 55vw; min-height: 260px; order: -1; }
@@ -702,26 +704,35 @@
     });
   });
 
-  // Team scroll reveal
+  // Team scroll reveal — add animation class via JS so CSS never hides without JS running
   const members = Array.from(document.querySelectorAll('.member'));
-  const observer = new IntersectionObserver(entries => {
+  members.forEach(m => m.classList.add('will-animate'));
+
+  function revealMember(el, index) {
+    setTimeout(() => {
+      el.classList.remove('will-animate');
+      el.classList.add('visible');
+    }, index * 150);
+  }
+
+  const teamObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const i = members.indexOf(e.target);
-        setTimeout(() => e.target.classList.add('visible'), i * 120);
-        observer.unobserve(e.target);
+        revealMember(e.target, members.indexOf(e.target));
+        teamObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-  members.forEach(m => observer.observe(m));
-  // Fallback: reveal cards already in viewport on page load (e.g. direct #team anchor)
-  setTimeout(() => {
-    members.forEach((m, i) => {
-      if (m.getBoundingClientRect().top < window.innerHeight) {
-        setTimeout(() => m.classList.add('visible'), i * 120);
-      }
-    });
-  }, 100);
+  }, { threshold: 0.05 });
+
+  members.forEach(m => {
+    // If already in view (e.g. direct #team link), reveal immediately
+    const rect = m.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      revealMember(m, members.indexOf(m));
+    } else {
+      teamObserver.observe(m);
+    }
+  });
 
   // Nav shrink
   window.addEventListener('scroll', () => {
