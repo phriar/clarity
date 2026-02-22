@@ -193,7 +193,7 @@
         <p>We'd love to hear from you. Reach out and we'll get back to you personally.</p>
         <div class="btn-row">
           <a href="contact.html" class="btn">Send a Message</a>
-          <a href="/cdn-cgi/l/email-protection#264e434a4a4966454a47544f525f53484549544d43420845494b" class="btn btn-outline">Email Us Directly</a>
+          <a href="mailto:hello@clarityuncorked.com" class="btn btn-outline">Email Us Directly</a>
         </div>
       </div>
 
@@ -209,29 +209,34 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
-      <a href="/cdn-cgi/l/email-protection#751d1019191a35161914071c010c001b161a071e10115b161a18">Email</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
     </div>
     <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
   </footer>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Hamburger
-  document.getElementById('hamburger').addEventListener('click', () => {
-    const drawer = document.getElementById('drawer');
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  ham.addEventListener('click', () => {
     const open = drawer.style.display === 'flex';
     drawer.style.display = open ? 'none' : 'flex';
     document.body.style.overflow = open ? '' : 'hidden';
   });
-  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('drawer').style.display = 'none';
-      document.body.style.overflow = '';
-    });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { drawer.style.display = 'none'; document.body.style.overflow = ''; });
   });
 
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item => {
     item.querySelector('.faq-q').addEventListener('click', () => {
-      const isOpen = ite
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
