@@ -186,7 +186,7 @@
   <!-- STEPS -->
   <div class="section steps-section">
     <div class="steps-intro">
-      <div class="label">The Journey</div>
+      <div class="label label-center">The Journey</div>
       <h2>The Clarity Uncorked <em>Experience</em></h2>
       <p>Three beautifully designed phases guide you from arrival to transformation.</p>
     </div>
@@ -250,10 +250,12 @@
 
   <!-- CTA BAND -->
   <div class="cta-band">
-    <div class="label">April 19–25, 2026</div>
-    <h2>The maison de maître is booked. <em>Are you?</em></h2>
-    <p>A soulful journey of self-discovery amidst vineyards, meaningful conversation, and historic charm.</p>
-    <a href="contact.html" class="btn" style="background:var(--cream); color:var(--wine);">Get in Touch</a>
+    <div class="centered" style="color:inherit;">
+      <div class="label label-center" style="color:var(--blush);">April 19–25, 2026</div>
+      <h2>The maison de maître is booked. <em>Are you?</em></h2>
+      <p>A soulful journey of self-discovery amidst vineyards, meaningful conversation, and historic charm.</p>
+      <a href="contact.html" class="btn" style="background:var(--cream); color:var(--wine);">Get in Touch</a>
+    </div>
   </div>
 
   <!-- FOOTER -->
@@ -266,14 +268,14 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
-      <a href="mailto:hello@clarityuncorked.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#076f626b6b6847646b66756e737e72696468756c62632964686a">Email</a>
     </div>
     <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
   </footer>
 
 </div><!-- end page-body -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const ham = document.getElementById('hamburger');
   const drawer = document.getElementById('drawer');
   ham.addEventListener('click', () => {
@@ -282,11 +284,4 @@
     document.body.style.overflow = open ? '' : 'hidden';
   });
   drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      drawer.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-  });
-</script>
-</body>
-</html>
+  

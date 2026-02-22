@@ -120,6 +120,10 @@ p { line-height: 1.85; color: var(--mid); font-size: 0.98rem; }
   color: var(--gold); display: flex; align-items: center; gap: 0.8rem;
   margin-bottom: 0.9rem;
 }
+.label-center { justify-content: center; }
+.label-center::before { display: none; }
+.centered { text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; }
+
 .label::before {
   content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
 }
@@ -168,7 +172,11 @@ p { line-height: 1.85; color: var(--mid); font-size: 0.98rem; }
 }
 .page-hero h1 em { color: var(--blush); }
 .page-hero .label { color: var(--gold); }
-.page-hero .label::before { background: var(--gold); }
+.page-hero .label-center { justify-content: center; }
+.label-center::before { display: none; }
+.centered { text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.label::before { background: var(--gold); }
 .page-hero p { color: rgba(250,246,241,0.65); margin-top: 0.8rem; max-width: 50ch; }
 
 /* ─── FOOTER ─── */
