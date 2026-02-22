@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Clarity Uncorked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine:    #5C1A1A;
+    --blush:   #E8C9B0;
+    --cream:   #FAF6F1;
+    --sage:    #7A8C72;
+    --gold:    #B8975A;
+    --charcoal:#2A2118;
+    --mid:     #7A6A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,246,241,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(92,26,26,0.08);
+    transition: padding 0.3s;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: 1.4rem; letter-spacing: 0.12em;
+    color: var(--wine); text-decoration: none;
+  }
+  .logo span { font-style: italic; color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav a {
+    text-decoration: none; color: var(--charcoal); font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    position: relative; transition: color 0.2s;
+  }
+  nav a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s ease; transform-origin: left;
+  }
+  nav a:hover { color: var(--wine); }
+  nav a:hover::after { transform: scaleX(1); }
+  nav a.active { color: var(--wine); }
+  nav a.active::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--wine); color: var(--cream) !important;
+    padding: 0.55rem 1.4rem; border-radius: 1px;
+    letter-spacing: 0.14em; font-size: 0.78rem; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    padding-top: 80px;
+    min-height: 38vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-bottom: 4rem;
+    padding-left: 6rem; padding-right: 6rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://clarityuncorked.com/wp-content/uploads/2025/11/The-Dordogne-river-from-Libourne-1-1024x775.jpeg');
+    background-size: cover; background-position: center 40%;
+    opacity: 0.35;
+  }
+  .page-hero-content { position: relative; z-index: 1; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before { content:''; display:block; width:30px; height:1px; background:var(--gold); }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05; color: var(--cream);
+    animation: fadeUp 0.9s ease both;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--blush); }
+  .page-hero .sub {
+    color: rgba(250,246,241,0.6); font-size: 1rem; margin-top: 1rem;
+    max-width: 50ch; line-height: 1.7;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  /* ─── FILTER BAR ─── */
+  .filter-bar {
+    padding: 2rem 6rem;
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    border-bottom: 1px solid rgba(92,26,26,0.1);
+    background: var(--cream);
+  }
+  .filter-label {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mid); margin-right: 0.5rem;
+  }
+  .filter-btn {
+    padding: 0.45rem 1.2rem;
+    font-family: 'Jost', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid rgba(92,26,26,0.2);
+    background: transparent; color: var(--mid);
+    cursor: pointer; transition: all 0.2s; border-radius: 1px;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--wine); color: var(--cream); border-color: var(--wine);
+  }
+
+  /* ─── MASONRY GRID ─── */
+  .gallery-section { padding: 4rem 6rem 6rem; }
+
+  .masonry {
+    columns: 3;
+    column-gap: 1.2rem;
+  }
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .masonry-item.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .masonry-item img {
+    width: 100%; display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: saturate(0.82);
+  }
+  .masonry-item:hover img {
+    transform: scale(1.04);
+    filter: saturate(1);
+  }
+  .masonry-item .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,33,24,0.65) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.4s ease;
+    display: flex; align-items: flex-end; padding: 1.2rem;
+  }
+  .masonry-item:hover .overlay { opacity: 1; }
+  .overlay-caption {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blush);
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(42,33,24,0.96);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox-inner {
+    position: relative; max-width: 90vw; max-height: 90vh;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .lightbox img {
+    max-width: 80vw; max-height: 88vh;
+    object-fit: contain; display: block;
+    border: 1px solid rgba(232,201,176,0.15);
+    transform: scale(0.95); transition: transform 0.3s ease;
+  }
+  .lightbox.open img { transform: scale(1); }
+  .lb-btn {
+    background: none; border: 1px solid rgba(232,201,176,0.3);
+    color: var(--blush); font-size: 1.5rem; width: 3rem; height: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; border-radius: 50%; flex-shrink: 0;
+  }
+  .lb-btn:hover { background: var(--wine); border-color: var(--wine); }
+  .lb-close {
+    position: absolute; top: -3rem; right: 0;
+    font-size: 1.1rem; border: none; border-radius: 50%;
+  }
+  .lb-counter {
+    position: absolute; bottom: -2.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(232,201,176,0.5);
+  }
+  .lb-caption {
+    position: absolute; bottom: -2.5rem; right: 0;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(232,201,176,0.4);
+  }
+
+  /* ─── INFO STRIP ─── */
+  .info-strip {
+    background: var(--charcoal); color: var(--cream);
+    padding: 5rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .info-strip h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 3vw, 3rem); color: var(--blush); margin-bottom: 1rem;
+  }
+  .info-strip h2 em { font-style: italic; color: var(--cream); }
+  .info-strip p { color: rgba(250,246,241,0.65); line-height: 1.85; }
+  .info-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .info-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding-bottom: 1.2rem; border-bottom: 1px solid rgba(250,246,241,0.08);
+  }
+  .info-detail:last-child { border-bottom: none; }
+  .detail-label {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); min-width: 90px;
+  }
+  .detail-val { font-size: 0.9rem; color: rgba(250,246,241,0.75); line-height: 1.6; }
+
+  /* ─── CTA ─── */
+  .gallery-cta {
+    background: var(--wine); text-align: center; padding: 5rem 4rem;
+  }
+  .gallery-cta .section-label { justify-content: center; color: var(--blush); }
+  .gallery-cta .section-label::before { display:none; }
+  .gallery-cta h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 3vw, 3rem); color: var(--cream); margin-bottom: 0.8rem;
+  }
+  .gallery-cta p { color: rgba(250,246,241,0.65); margin-bottom: 2rem; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    background: var(--cream); color: var(--wine);
+    padding: 0.9rem 2.4rem; letter-spacing: 0.16em;
+    font-size: 0.78rem; text-transform: uppercase;
+    transition: background 0.25s, transform 0.2s; border-radius: 1px;
+  }
+  .btn:hover { background: var(--gold); color: var(--cream); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--blush);
+    border: 1px solid rgba(232,201,176,0.4); margin-left: 1rem;
+  }
+  .btn-ghost:hover { background: rgba(232,201,176,0.1); transform: translateY(-1px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal); color: rgba(250,246,241,0.5);
+    padding: 2.5rem 6rem; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; letter-spacing: 0.1em;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    color: rgba(250,246,241,0.6); text-decoration: none;
+  }
+  footer a { color: rgba(250,246,241,0.5); text-decoration:none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .masonry { columns: 2; }
+    .filter-bar, .gallery-section, footer { padding-left: 2rem; padding-right: 2rem; }
+    .page-hero { padding-left: 2rem; padding-right: 2rem; }
+    .info-strip { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    .masonry { columns: 1; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Clarity <span>Uncorked</span></a>
+  <ul>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#team">Team</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Join the Retreat</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label">Bordeaux · Sainte-Foy-la-Grande</div>
+    <h1>A taste of what <em>awaits you</em></h1>
+    <p class="sub">From vineyard mornings to long French dinners — a glimpse into the beauty, food, and connection that define the Clarity Uncorked experience.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Show:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="landscape">Landscape</button>
+  <button class="filter-btn" data-filter="food">Food &amp; Wine</button>
+  <button class="filter-btn" data-filter="retreat">Retreat</button>
+</div>
+
+<!-- MASONRY GALLERY -->
+<div class="gallery-section">
+  <div class="masonry" id="masonry">
+
+    <div class="masonry-item" data-category="landscape">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/09/image-7.jpg" alt="Bordeaux region landscape" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Bordeaux Region</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="retreat">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/604a6032ba630cb2bfacd6fa_image48.png" alt="Retreat experience" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Retreat Experience</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="landscape">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/5c8bf4572b3aa99a0a4c166161313ac1983d1151.jpg" alt="French countryside" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">French Countryside</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="retreat">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/3e0f48b424eb15016a861857417702f56ff68ab9.jpg" alt="Coaching session" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Coaching &amp; Connection</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/604f937f5a8b64ca482bbc90_image28-837x1024.png" alt="Wine tasting" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Wine Tasting</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="landscape">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/60490f58fc8c4d1b57f562e0_image30.png" alt="Vineyard views" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Vineyard Views</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Bottles-of-wine-768x1024.jpg" alt="Bordeaux wine bottles" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Bordeaux Wines</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="landscape">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/sainte-foy-grande-28631_w400.webp" alt="Sainte-Foy-la-Grande" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Sainte-Foy-la-Grande</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/604f937f5a8b64ca482bbc90_image28-837x1024.png" alt="Local cuisine" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Local Cuisine</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="landscape">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/The-Dordogne-river-from-Libourne-1-1024x775.jpeg" alt="The Dordogne river from Libourne" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Dordogne River · Libourne</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Charcuterie-platter-768x1024.jpeg" alt="Charcuterie platter" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Charcuterie Platter</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Sharing-dessert-platter-901x1024.jpeg" alt="Sharing dessert platter" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Dessert à Partager</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Artichoke-with-vinaigrette-1024x768.jpeg" alt="Artichoke with vinaigrette" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Artichoke · Vinaigrette</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg" alt="Canapés" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Canapés &amp; Aperitifs</span></div>
+    </div>
+
+    <div class="masonry-item" data-category="retreat">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/B103ACDB-F057-431B-B958-9B61356A89C6_1_105_c.jpeg" alt="Retreat moment" loading="lazy">
+      <div class="overlay"><span class="overlay-caption">Retreat Moments</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div>
+    <div class="section-label" style="color:var(--blush);">
+      <span style="display:block;width:30px;height:1px;background:var(--blush);"></span>
+      The Retreat
+    </div>
+    <h2>Clarity <em>Uncorked</em></h2>
+    <p>Experience the serene beauty of Bordeaux as we guide women through transformative moments. From vineyard tours to reflective coaching sessions, every detail is designed to inspire clarity and confidence in your next chapter.</p>
+  </div>
+  <div class="info-details">
+    <div class="info-detail">
+      <span class="detail-label">Date</span>
+      <span class="detail-val">April 19–25, 2026</span>
+    </div>
+    <div class="info-detail">
+      <span class="detail-label">Location</span>
+      <span class="detail-val">Sainte-Foy-la-Grande, Bordeaux, France</span>
+    </div>
+    <div class="info-detail">
+      <span class="detail-label">Group Size</span>
+      <span class="detail-val">Intentionally small — 8 to 10 women</span>
+    </div>
+    <div class="info-detail">
+      <span class="detail-label">Stay</span>
+      <span class="detail-val">Six nights in a private maison de maître</span>
+    </div>
+    <div class="info-detail">
+      <span class="detail-label">Included</span>
+      <span class="detail-val">All meals, wine, excursions, coaching &amp; transfers</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="gallery-cta">
+  <div class="section-label">April 2026</div>
+  <h2>Ready to be in the picture?</h2>
+  <p>Seats are limited. Reach out to learn more and secure your place in Bordeaux.</p>
+  <a href="index.html#contact" class="btn">Get in Touch</a>
+  <a href="index.html" class="btn btn-ghost">Back to Home</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Clarity Uncorked</a>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+    <a href="mailto:hello@clarityuncorked.com">Email</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="index.html#faq">FAQ</a>
+  </div>
+  <div>© 2025 Clarity Uncorked · Bordeaux, France</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lb-btn" id="lb-prev">&#8592;</button>
+    <div style="position:relative;">
+      <button class="lb-btn lb-close" id="lb-close">&#x2715;</button>
+      <img id="lb-img" src="" alt="">
+      <div class="lb-counter" id="lb-counter"></div>
+    </div>
+    <button class="lb-btn" id="lb-next">&#8594;</button>
+  </div>
+</div>
+
+<script>
+  // ─── NAV SHRINK ───
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding =
+      window.scrollY > 60 ? '0.75rem 3rem' : '1.25rem 3rem';
+  });
+
+  // ─── SCROLL REVEAL ───
+  const items = Array.from(document.querySelectorAll('.masonry-item'));
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = items.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), (i % 6) * 80);
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  items.forEach(el => revealObserver.observe(el));
+
+  // ─── FILTER ───
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  // ─── LIGHTBOX ───
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function getVisibleItems() {
+    return items.filter(i => i.style.display !== 'none');
+  }
+
+  function openLightbox(index) {
+    visibleItems = getVisibleItems();
+    currentIndex = index;
+    showImage(currentIndex);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showImage(index) {
+    const item = visibleItems[index];
+    const img = item.querySelector('img');
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb-img').alt = img.alt;
+    document.getElementById('lb-counter').textContent =
+      `${index + 1} / ${visibleItems.length}`;
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      visibleItems = getVisibleItems();
+      const vi = visibleItems.indexOf(item);
+      openLightbox(vi);
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  });
+  document.getElementById('lb-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    showImage(currentIndex);
+  });
+  document.getElementById('lb-next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    showImage(currentIndex);
+  });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; showImage(currentIndex); }
+    if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % visibleItems.length; showImage(currentIndex); }
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
