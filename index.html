@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity Uncorked — Bordeaux Retreat for Women</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine:    #5C1A1A;
+    --blush:   #E8C9B0;
+    --cream:   #FAF6F1;
+    --sage:    #7A8C72;
+    --gold:    #B8975A;
+    --charcoal:#2A2118;
+    --mid:     #7A6A58;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,246,241,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(92,26,26,0.08);
+    transition: padding 0.3s;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: 1.4rem; letter-spacing: 0.12em;
+    color: var(--wine); text-decoration: none;
+  }
+  .logo span { font-style: italic; color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav a {
+    text-decoration: none; color: var(--charcoal); font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    position: relative; transition: color 0.2s;
+  }
+  nav a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s ease; transform-origin: left;
+  }
+  nav a:hover { color: var(--wine); }
+  nav a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--wine); color: var(--cream) !important;
+    padding: 0.55rem 1.4rem; border-radius: 1px;
+    letter-spacing: 0.14em; font-size: 0.78rem; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--cream) !important; }
+  .nav-cta::after { display: none; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 80px;
+  }
+  .hero-text {
+    padding: 6rem 4rem 6rem 6rem;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-label::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.05; color: var(--wine); margin-bottom: 1.8rem;
+  }
+  h1 em { font-style: italic; color: var(--charcoal); }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.8; color: var(--mid);
+    max-width: 42ch; margin-bottom: 2.5rem;
+  }
+  .btn {
+    display: inline-block; text-decoration: none;
+    background: var(--wine); color: var(--cream);
+    padding: 0.9rem 2.4rem; letter-spacing: 0.16em;
+    font-size: 0.78rem; text-transform: uppercase;
+    transition: background 0.25s, transform 0.2s; border-radius: 1px;
+  }
+  .btn:not(.btn-outline):hover { background: var(--gold); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; border: 1px solid var(--wine); color: var(--wine);
+    margin-left: 1rem;
+  }
+  .btn-outline:hover { background: var(--wine); color: var(--cream); transform: translateY(-1px); }
+  .hero-visual {
+    height: 100vh; position: relative; overflow: hidden;
+    animation: fadeIn 1.2s ease both;
+  }
+  .hero-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.85);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(92,26,26,0.18) 0%, transparent 60%);
+  }
+  .hero-date-badge {
+    position: absolute; bottom: 2.5rem; left: 2.5rem;
+    background: rgba(250,246,241,0.94); backdrop-filter: blur(8px);
+    padding: 1.2rem 1.6rem; border-left: 3px solid var(--gold);
+  }
+  .hero-date-badge .date { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--wine); }
+  .hero-date-badge .loc { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); margin-top: 0.2rem; }
+
+  /* ─── SECTION UTILITY ─── */
+  section { padding: 7rem 6rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before { content:''; display:block; width:30px; height:1px; background:var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem); line-height: 1.15;
+    color: var(--wine); margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--charcoal); }
+  p { line-height: 1.85; color: var(--mid); font-size: 1rem; }
+
+  /* ─── ABOUT STRIP ─── */
+  #about {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    padding: 0; background: var(--charcoal);
+  }
+  .about-visual { position: relative; min-height: 520px; overflow: hidden; }
+  .about-visual img { width:100%; height:100%; object-fit:cover; opacity:0.7; }
+  .about-text {
+    padding: 6rem 5rem; color: var(--cream); display: flex;
+    flex-direction: column; justify-content: center;
+  }
+  .about-text .section-label { color: var(--blush); }
+  .about-text .section-label::before { background: var(--blush); }
+  .about-text h2 { color: var(--blush); }
+  .about-text p { color: rgba(250,246,241,0.75); }
+  .about-text .btn { margin-top: 2rem; }
+
+  /* ─── EXPERIENCE STEPS ─── */
+  #experience { background: var(--cream); }
+  .steps-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  .steps-header .section-label { justify-content: center; }
+  .steps-header .section-label::before { display:none; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 4rem; }
+  .step {
+    border-top: 2px solid var(--blush); padding-top: 2rem;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .step:hover { transform: translateY(-6px); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: rgba(92,26,26,0.08);
+    position: absolute; top: -0.3rem; right: 0; line-height: 1;
+    font-weight: 300;
+  }
+  .step h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+    color: var(--wine); margin-bottom: 0.8rem; font-weight: 400;
+  }
+
+  /* ─── INCLUDED ─── */
+  #included {
+    background: #EDE4D8;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  }
+  .included-col h2 { margin-bottom: 2rem; }
+  .inc-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+  .inc-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    font-size: 0.95rem; color: var(--charcoal); line-height: 1.6;
+  }
+  .inc-list li::before {
+    content: '✦'; color: var(--gold); font-size: 0.6rem; margin-top: 0.4rem; flex-shrink: 0;
+  }
+  .not-inc li::before { content: '○'; color: var(--mid); }
+  .not-col h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+    color: var(--charcoal); margin-bottom: 1.5rem; font-weight: 400;
+  }
+  .not-col p { font-size: 0.85rem; color: var(--mid); margin-bottom: 1.5rem; }
+
+  /* ─── TEAM ─── */
+  #team { background: var(--cream); }
+  .team-header { text-align: center; margin-bottom: 4rem; }
+  .team-header .section-label { justify-content: center; }
+  .team-header .section-label::before { display:none; }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+  .member {
+    text-align: center;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .member.visible { opacity:1; transform: translateY(0); }
+  .member-photo {
+    width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+    margin: 0 auto 1.2rem; display: block;
+    border: 3px solid var(--blush);
+    filter: saturate(0.8);
+    transition: filter 0.3s, border-color 0.3s;
+  }
+  .member:hover .member-photo { filter: saturate(1); border-color: var(--gold); }
+  .member h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    color: var(--wine); margin-bottom: 0.25rem; font-weight: 400;
+  }
+  .member .role {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .member p { font-size: 0.85rem; line-height: 1.7; color: var(--mid); }
+  .member-links { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.8rem; }
+  .member-links a {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--wine); text-decoration: none; border-bottom: 1px solid var(--blush);
+    transition: border-color 0.2s;
+  }
+  .member-links a:hover { border-color: var(--wine); }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--charcoal); color: var(--cream); }
+  #faq .section-label { color: var(--blush); }
+  #faq .section-label::before { background: var(--blush); }
+  #faq h2 { color: var(--blush); text-align: left; margin-bottom: 3rem; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .faq-item {
+    border-top: 1px solid rgba(250,246,241,0.12);
+    padding: 1.5rem 0; cursor: pointer;
+  }
+  .faq-item:nth-child(odd) { padding-right: 3rem; }
+  .faq-item:nth-child(even) { padding-left: 3rem; border-left: 1px solid rgba(250,246,241,0.12); }
+  .faq-q {
+    font-size: 0.95rem; color: var(--blush); margin-bottom: 0.6rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-q::after { content: '+'; font-size: 1.2rem; color: var(--gold); transition: transform 0.3s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 0.88rem; line-height: 1.75; color: rgba(250,246,241,0.6);
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  }
+  .faq-item.open .faq-a { max-height: 200px; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--wine); color: var(--cream); text-align: center;
+    padding: 7rem 4rem;
+  }
+  #cta .section-label { color: var(--blush); justify-content: center; }
+  #cta .section-label::before { display:none; }
+  #cta h2 { color: var(--cream); margin-bottom: 1rem; }
+  #cta .sub { font-size: 1rem; color: rgba(250,246,241,0.7); margin-bottom: 2.5rem; }
+  #cta .btn { background: var(--cream); color: var(--wine); }
+  #cta .btn:hover { background: var(--gold); color: var(--cream); }
+
+  /* ─── CONTACT ─── */
+  #contact { background: #EDE4D8; padding: 7rem 6rem; }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .contact-left h2 { margin-bottom: 1rem; }
+  .contact-left p { margin-bottom: 1.5rem; }
+  .contact-left .email-link {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--wine);
+    text-decoration: none; border-bottom: 2px solid var(--blush);
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .contact-left .email-link:hover { border-color: var(--wine); }
+  form { display: flex; flex-direction: column; gap: 1.2rem; }
+  form input, form textarea {
+    border: 1px solid rgba(92,26,26,0.2); background: rgba(250,246,241,0.6);
+    padding: 0.85rem 1.1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem;
+    color: var(--charcoal); outline: none; border-radius: 1px;
+    transition: border-color 0.2s;
+  }
+  form input:focus, form textarea:focus { border-color: var(--wine); }
+  form textarea { resize: vertical; min-height: 120px; }
+  form button {
+    align-self: flex-start; cursor: pointer; border: none;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal); color: rgba(250,246,241,0.5);
+    padding: 2.5rem 6rem; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; letter-spacing: 0.1em;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    color: rgba(250,246,241,0.6); text-decoration: none;
+  }
+  footer a { color: rgba(250,246,241,0.5); text-decoration:none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-visual { height: 50vh; }
+    .hero-text { padding: 4rem 2rem; }
+    #about { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-item:nth-child(even) { padding-left: 0; border-left: none; }
+    section { padding: 5rem 2rem; }
+    #included { grid-template-columns: 1fr; padding: 5rem 2rem; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Clarity <span>Uncorked</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Join the Retreat</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-label">Bordeaux, France · April 2026</div>
+    <h1>Not just a getaway.<br><em>A retreat that uncorks the real you.</em></h1>
+    <p class="hero-sub">Blending wine, connection, and what's possible for you — pause, reflect, and explore what's next with curiosity, honesty, and a heavy dose of great food and wine.</p>
+    <div>
+      <a href="#experience" class="btn">Discover the Journey</a>
+      <a href="#contact" class="btn btn-outline">Stay in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/b4fdf3b4645501dc17015801c4d1245799cfb541.jpg" alt="Bordeaux vineyard landscape" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-date-badge">
+      <div class="date">April 19–25, 2026</div>
+      <div class="loc">Bordeaux, France</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/2942e066827d8cfff144c2f3173c66da334a9e33.jpg" alt="Retreat setting">
+  </div>
+  <div class="about-text">
+    <div class="section-label">Our Story</div>
+    <h2>Born from the best conversations</h2>
+    <p style="margin-bottom:1.2rem;">Clarity Uncorked was born from the idea that the best conversations — the ones that change us — don't happen in conference rooms. They happen around a table, a glass in hand, in those moments when we drop the script and tell the truth about what's really going on.</p>
+    <p>Picture this: rolling vineyards, strolling local markets, long French dinners, and space to finally exhale. Over days together, we'll uncork old stories, pour out what no longer serves us, and make room for connection, laughter, and clarity.</p>
+    <a href="#team" class="btn">Meet Your Guides</a>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="steps-header">
+    <div class="section-label">The Journey</div>
+    <h2>The Clarity Uncorked <em>Experience</em></h2>
+    <p>Three beautifully designed phases guide you from arrival to transformation and everything in between.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Arrival &amp; Reflection</h3>
+      <p>Begin your journey in building community and your strategy for change before you board your flight. Then upon arrival in Bordeaux, settle into peaceful surroundings that invite introspection and openness.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Immersion &amp; Coaching</h3>
+      <p>Engage in exciting, curated cultural experiences paired with personalized coaching to uncover clarity and new perspectives across vineyards, markets, and intimate dinners.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Integration &amp; Next Steps</h3>
+      <p>Conclude with actionable insights, renewed confidence, and a supportive community ready to embrace your life's next exciting chapter — and a post-retreat group integration session to keep the momentum.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section id="included">
+  <div class="included-col">
+    <div class="section-label">What's Included</div>
+    <h2>Everything <em>handled.</em></h2>
+    <p style="margin-bottom:2rem;">This retreat is intentionally designed so you don't have to manage a thing. From the moment you arrive, the week unfolds for you — thoughtfully curated, beautifully paced.</p>
+    <ul class="inc-list">
+      <li>Transportation from/to Bordeaux airport or train station</li>
+      <li>Six nights in a private maison de maître</li>
+      <li>Daily breakfast, curated lunches, and multi-course dinners</li>
+      <li>All wine tastings, market visits, and local excursions</li>
+      <li>Pre-retreat group call + 1:1 coaching session</li>
+      <li>On-site coaching throughout the week</li>
+      <li>A small, intentional community of women – not a crowd</li>
+      <li>Post-retreat group integration session and private community access</li>
+    </ul>
+  </div>
+  <div class="not-col" style="padding-top:2rem;">
+    <div class="section-label">What's Not Included</div>
+    <h3>A few things to keep in mind</h3>
+    <p>Here's what falls outside the curated retreat experience so you can plan accordingly.</p>
+    <ul class="inc-list not-inc">
+      <li>Airfare to/from Bordeaux</li>
+      <li>Alcohol or meals outside the curated agenda</li>
+      <li>Personal purchases (market finds, souvenirs, boutique items)</li>
+      <li>Additional spa treatments or add-on activities</li>
+      <li>Travel insurance (required)</li>
+    </ul>
+    <div style="margin-top:3rem; padding:2rem; background:var(--wine); color:var(--cream); border-left:4px solid var(--gold);">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:0.5rem; font-weight:400;">The maison de maître has been booked.</div>
+      <div style="font-size:0.85rem; opacity:0.8; margin-bottom:1.2rem;">Come join us in April 2026 — seats are intentionally limited to 8–10 women.</div>
+      <a href="#contact" class="btn" style="background:var(--gold); font-size:0.75rem;">Reserve Your Spot</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-header">
+    <div class="section-label">Your Guides</div>
+    <h2>The inspiring folk on your journey</h2>
+  </div>
+  <div class="team-grid">
+    <div class="member">
+      <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Val_Santorini.jpeg" alt="Valerie Rivera">
+      <h3>Valerie Rivera</h3>
+      <div class="role">Group Facilitator &amp; Local Guide</div>
+      <p>From military career to Stanford MBA to founding companies — Valerie's path has been courageous reinvention. Now based in France, she creates space for women to slow down, savor, and rediscover clarity.</p>
+      <div class="member-links"><a href="https://www.linkedin.com/in/valeriebrivera/" target="_blank">LinkedIn</a></div>
+    </div>
+    <div class="member">
+      <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Jen_Bio-857x1024.jpg" alt="Jen Holt">
+      <h3>Jen Holt</h3>
+      <div class="role">Certified Life Coach</div>
+      <p>Founder of Bright Finch Coaching and former national security strategist, Jen brings nearly two decades of high-pressure experience and a personal understanding of rebuilding from burnout into alignment.</p>
+      <div class="member-links"><a href="https://www.linkedin.com/in/jennifer-holt19" target="_blank">LinkedIn</a></div>
+    </div>
+    <div class="member">
+      <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/311E4256-3799-40E7-8CEE-1528805EDDA9_1_105_c.jpeg" alt="Anna">
+      <h3>Anna</h3>
+      <div class="role">Restaurateur &amp; Cultural Expert</div>
+      <p>30 years in France, co-founder of Le Dix-Sept restaurant, and former university lecturer — Anna brings bilingual authenticity and grounded perspective on personal and professional change.</p>
+      <div class="member-links"><a href="https://www.instagram.com/restaurantledixsept/" target="_blank">Instagram</a></div>
+    </div>
+    <div class="member">
+      <img class="member-photo" src="https://clarityuncorked.com/wp-content/uploads/2025/11/Michael-bio-768x1024.jpeg" alt="Michael">
+      <h3>Michael</h3>
+      <div class="role">Executive Chef &amp; Cultural Expert</div>
+      <p>Chef and co-founder of Le Dix-Sept, trained in Alsace, with a background spanning commercial real estate, aviation, and organizational development for British Airways and KPMG.</p>
+      <div class="member-links"><a href="https://www.instagram.com/restaurantledixsept/" target="_blank">Instagram</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-label">Got Questions?</div>
+  <h2>Frequently Asked <em>Questions</em></h2>
+  <div class="faq-grid">
+
+    <div class="faq-item">
+      <div class="faq-q">What are the room options?</div>
+      <div class="faq-a">All rooms are private — only a couple share bathrooms. Each one is unique and thoughtfully decorated, think cozy comfort meets French charm.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Where should I fly into?</div>
+      <div class="faq-a">Bordeaux is the nearest airport. A lovely option is to fly into Paris, spend a few nights, then take the train to Bordeaux (or even all the way to Sainte-Foy-la-Grande!).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Will there be downtime?</div>
+      <div class="faq-a">Absolutely. We've intentionally built in space to rest, reflect, journal, explore on your own, or even sneak in a quick work check-in if needed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What will the weather be like?</div>
+      <div class="faq-a">Late April is spring in full bloom — expect mild temperatures, sunshine, and maybe a refreshing rain shower. Light layers, comfy shoes, a scarf, and sunglasses are your friends.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Are all meals included?</div>
+      <div class="faq-a">Yes! All breakfasts, lunches, and dinners are included, along with wine and aperitifs for those who wish to indulge. Delicious non-alcoholic options are always available.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I don't drink alcohol — will I feel excluded?</div>
+      <div class="faq-a">Not at all. We celebrate presence and pleasure, not pressure. You'll always have sparkling waters, fresh juices, and local specialties — with plenty of company to toast with.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How many people will be in the group?</div>
+      <div class="faq-a">We're keeping the retreat intentionally small — around 8–10 women — so everyone has space for meaningful connection and personal reflection.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need to speak French?</div>
+      <div class="faq-a">Not at all. We'll handle logistics and translation. A few mercis and bonjours will go a long way — that's genuinely all you'll need.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I come alone?</div>
+      <div class="faq-a">Absolutely — most guests do! You'll be warmly welcomed into a community of curious, open-hearted women from the very first group call.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I have food allergies — will those be accommodated?</div>
+      <div class="faq-a">Yes! Please let us know about any allergies, intolerances, or dietary preferences when you register. Our meals are designed with care and everyone is included.</div>
+    </div>
+
+  </div>
+  <div style="margin-top:3rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem;">
+    <p style="color:rgba(250,246,241,0.5);">Still have questions?</p>
+    <a href="mailto:hello@clarityuncorked.com" class="btn" style="background:var(--gold);">Email Us</a>
+    <a href="#contact" class="btn" style="background:transparent; border:1px solid var(--blush); color:var(--blush);">Send Us a Message</a>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="cta">
+  <div class="section-label">April 19–25, 2026</div>
+  <h2>The maison de maître is booked. <em>Are you?</em></h2>
+  <p class="sub">A soulful and delicious journey of self-discovery amidst vineyards, meaningful conversation, and historic charm — for a small group of intentional women.</p>
+  <a href="#contact" class="btn">Connect With Us</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <div class="section-label">Let's Connect</div>
+      <h2>Stay up to date with all Clarity Uncorked updates</h2>
+      <p>Have questions? Want to secure your spot? Reach out — we'd love to hear from you.</p>
+      <a href="mailto:hello@clarityuncorked.com" class="email-link">hello@clarityuncorked.com</a>
+      <br><br>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank" style="color:var(--mid); font-size:0.85rem; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase;">@clarityuncorked on Instagram ↗</a>
+    </div>
+    <form onsubmit="handleForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Your message..."></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#hero" class="footer-logo">Clarity Uncorked</a>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+    <a href="mailto:hello@clarityuncorked.com">Email</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div>© 2025 Clarity Uncorked · Bordeaux, France</div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Team scroll reveal
+  const members = Array.from(document.querySelectorAll('.member'));
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = members.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  members.forEach(m => observer.observe(m));
+
+  // Nav shrink
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding =
+      window.scrollY > 60 ? '0.75rem 3rem' : '1.25rem 3rem';
+  });
+
+  // Form stub
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Message Sent ✦';
+    btn.style.background = 'var(--sage)';
+    btn.disabled = true;
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
