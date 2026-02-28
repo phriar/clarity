@@ -243,7 +243,7 @@ footer .copy {
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--cream);
@@ -254,6 +254,15 @@ footer .copy {
   z-index: 9999;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   transition: opacity 0.18s, visibility 0.18s;
+  /* invisible bridge fills the gap between nav link and dropdown box */
+}
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
 }
 .has-dropdown:hover .dropdown {
   visibility: visible;
