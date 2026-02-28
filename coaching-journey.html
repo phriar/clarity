@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coaching Journey — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ─── PHASE BLOCKS ─── */
+  .phase {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    padding: 5rem 6rem;
+    border-bottom: 1px solid rgba(92,26,26,0.08);
+  }
+  .phase:last-of-type { border-bottom: none; }
+  .phase.flip { direction: rtl; }
+  .phase.flip > * { direction: ltr; }
+  .phase-img img {
+    width: 100%; height: 420px; object-fit: cover; display: block;
+  }
+  .phase-copy .label { margin-bottom: 0.8rem; }
+  .phase-copy h2 { margin-bottom: 1.2rem; font-size: clamp(1.8rem, 3vw, 2.8rem); }
+  .phase-copy p { margin-bottom: 1rem; }
+
+  /* ─── CHECKLIST ITEMS ─── */
+  .check-list { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2rem; }
+  .check-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .check-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--sand); border: 1px solid var(--blush);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 0.1rem;
+    color: var(--gold); font-size: 0.9rem;
+  }
+  .check-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--wine); margin-bottom: 0.3rem;
+  }
+  .check-item p { font-size: 0.9rem; margin: 0; }
+
+  /* ─── NUMBERED STEPS ─── */
+  .steps-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .step-item { display: flex; gap: 1.4rem; align-items: flex-start; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; color: var(--blush); line-height: 1;
+    flex-shrink: 0; width: 2rem; text-align: center;
+  }
+  .step-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--wine); margin-bottom: 0.35rem;
+  }
+  .step-item p { font-size: 0.9rem; margin: 0; }
+
+  /* ─── DARK INTRO BAND ─── */
+  .intro-band {
+    background: var(--charcoal); padding: 5rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .intro-band h2 { color: var(--blush); margin-bottom: 1.2rem; }
+  .intro-band .label { color: var(--blush); }
+  .intro-band .label::before { background: var(--blush); }
+  .intro-band p { color: rgba(250,246,241,0.72); margin-bottom: 1rem; }
+  .intro-band img { width: 100%; height: 400px; object-fit: cover; display: block; opacity: 0.8; }
+
+  /* ─── SUB-PAGE NAV STRIP ─── */
+  .subpage-nav {
+    background: var(--sand);
+    padding: 1rem 6rem;
+    display: flex; gap: 0.5rem; align-items: center;
+    border-bottom: 1px solid rgba(92,26,26,0.1);
+    flex-wrap: wrap;
+  }
+  .subpage-nav a {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; padding: 0.5rem 1rem;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .subpage-nav a:hover, .subpage-nav a.active {
+    border-color: var(--wine); color: var(--wine);
+  }
+  .subpage-nav span { color: var(--blush); font-size: 0.7rem; }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--wine); text-align: center; padding: 5rem 4rem;
+  }
+  .cta-band h2 { color: var(--cream); margin-bottom: 0.8rem; }
+  .cta-band p { color: rgba(250,246,241,0.68); max-width: 50ch; margin: 0 auto 2rem; }
+
+  @media (max-width: 860px) {
+    .phase, .phase.flip { grid-template-columns: 1fr; gap: 2rem; direction: ltr; padding: 3rem 1.5rem; }
+    .phase-img img { height: 260px; }
+    .intro-band { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    .intro-band img { height: 220px; }
+    .subpage-nav { padding: 0.8rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <a href="experience.html" class="active">Experience</a>
+      <div class="dropdown">
+        <a href="coaching-journey.html">The Coaching Journey</a>
+        <a href="feast-for-senses.html">A Feast for Your Senses</a>
+        <a href="investment.html">Your Investment in Clarity</a>
+      </div>
+    </li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a>
+  <div class="drawer-sub">
+    <a href="coaching-journey.html">↳ The Coaching Journey</a>
+    <a href="feast-for-senses.html">↳ A Feast for Your Senses</a>
+    <a href="investment.html">↳ Your Investment in Clarity</a>
+  </div>
+  <hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/09/image-7.jpg');"></div>
+    <div class="page-hero-content">
+      <div class="label">A Deeper Dive</div>
+      <h1>The Coaching <em>Journey</em></h1>
+      <p>More than a retreat — a high-touch coaching arc with continuity, depth, and community.</p>
+    </div>
+  </div>
+
+  <!-- SUB-PAGE NAV -->
+  <div class="subpage-nav">
+    <span>A Deeper Dive:</span>
+    <a href="coaching-journey.html" class="active">The Coaching Journey</a>
+    <a href="feast-for-senses.html">A Feast for Your Senses</a>
+    <a href="investment.html">Your Investment in Clarity</a>
+  </div>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band">
+    <div>
+      <div class="label">More Than a Retreat</div>
+      <h2>A guided transition wrapped in <em>beauty and clarity</em></h2>
+      <p>Clarity Uncorked may look like a gorgeous week in the French countryside, but what you're also investing in is a high-touch coaching arc with continuity, depth, and community.</p>
+      <p>Women arrive at thresholds — career changes, identity shifts, empty nests, rising ambition, or a quiet sense that something needs to shift.</p>
+      <p>They leave with clarity they can feel, direction they trust, and support that lasts.</p>
+      <p>The coaching begins before we ever set foot in France and continues long after we return. This isn't a one-off escape. It's a guided transition wrapped in beauty, connection, and clarity.</p>
+    </div>
+    <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/image-12.jpg" alt="Coaching journey">
+  </div>
+
+  <!-- PHASE 1: PRE-RETREAT -->
+  <div class="phase">
+    <div class="phase-copy">
+      <div class="label">Before You Arrive</div>
+      <h2>Arrive in France <em>already grounded</em></h2>
+      <p>You shouldn't spend the first two days decompressing. The pre-retreat coaching eases you into the experience so you show up present, open, and ready.</p>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Pre-Retreat Group Session</h4>
+            <p>A warm, guided session where you meet the other women, understand shared themes, and enter the retreat with comfort rather than awkward introductions.</p>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Pre-Retreat 1:1 Coaching Session</h4>
+            <p>A private session with Jen to set intentions, clear mental clutter, and name what you want this retreat to unlock. You arrive aligned — not overwhelmed.</p>
+          </div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn" style="margin-top:2rem;">Start Your Journey</a>
+    </div>
+    <div class="phase-img">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/image-9.jpg" alt="Pre-retreat preparation">
+    </div>
+  </div>
+
+  <!-- PHASE 2: ON-SITE -->
+  <div class="phase flip" style="background:var(--sand);">
+    <div class="phase-copy">
+      <div class="label">While You're in France</div>
+      <h2>Coaching woven into <em>each day</em></h2>
+      <p>In France, the coaching becomes the quiet rhythm underneath the beauty and exploration. Not lectures — lived experience paired with guided conversation.</p>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Opening Circle</h4>
+            <p>A grounding conversation that anchors your intention and sets the emotional tone for the week.</p>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Daily Reflection Touchpoint</h4>
+            <p>Short, simple prompts that help you stay connected to yourself as the days unfold.</p>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Two Deep-Dive Workshops</h4>
+            <p>Intimate coaching sessions that uncover patterns, desires, and next steps through guided conversations, not lectures.</p>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">✦</div>
+          <div>
+            <h4>Optional 1:1 Coaching During the Week</h4>
+            <p>Space for a private session if something rises up that needs more attention or clarity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-img">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/image-10.jpg" alt="On-site coaching">
+    </div>
+  </div>
+
+  <!-- PHASE 3: POST-RETREAT -->
+  <div class="phase">
+    <div class="phase-copy">
+      <div class="label">After You Return Home</div>
+      <h2>Clarity that <em>follows you home</em></h2>
+      <p>The real shift happens when you're back home, moving through your actual life. Post-retreat integration gives you the structure and support to carry your clarity forward instead of losing it to old routines.</p>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>
+            <h4>Clarity That Follows You Home</h4>
+            <p>Insights are only powerful if they translate into life. Integration is built into this experience from the start.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>
+            <h4>Group Integration Session</h4>
+            <p>A live session a few weeks after returning home to reconnect, refine next steps, and anchor what shifted in France.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div>
+            <h4>Ongoing Community</h4>
+            <p>Each cohort stays connected through a private WhatsApp group — a warm, steady thread of encouragement, small wins, questions, and companionship. Not a noisy group chat. Just steady, ongoing support from women on similar paths.</p>
+          </div>
+        </div>
+      </div>
+      <a href="contact.html" class="btn" style="margin-top:2rem;">Join Our Community</a>
+    </div>
+    <div class="phase-img">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/604a6032ba630cb2bfacd6fa_image48.png" alt="Post-retreat integration">
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="centered" style="max-width:700px; color:inherit;">
+      <div class="label label-center" style="color:var(--blush);">April 19–25, 2026</div>
+      <h2>Ready to begin your <em>coaching journey?</em></h2>
+      <p>Seats are intentionally limited to 8–10 women. Reach out and we'll walk you through everything.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn" style="background:var(--cream);color:var(--wine);">Get in Touch</a>
+        <a href="investment.html" class="btn" style="background:transparent;border:1px solid rgba(250,246,241,0.4);color:var(--cream);">See Investment Details</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const drawer = document.getElementById('drawer');
+    const open = drawer.style.display === 'flex';
+    drawer.style.display = open ? 'none' : 'flex';
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('drawer').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>

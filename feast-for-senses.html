@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Feast for Your Senses — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .intro-band {
+    background: var(--charcoal); padding: 5rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .intro-band h2 { color: var(--blush); margin-bottom: 1.2rem; }
+  .intro-band .label { color: var(--blush); }
+  .intro-band .label::before { background: var(--blush); }
+  .intro-band p { color: rgba(250,246,241,0.72); margin-bottom: 1rem; }
+  .intro-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .intro-img-grid img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.85; }
+
+  /* Menu of the day */
+  .menu-section { padding: 5rem 6rem; }
+  .menu-intro { max-width: 680px; margin-bottom: 4rem; }
+  .menu-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .menu-card {
+    background: var(--cream); border: 1px solid rgba(92,26,26,0.1);
+    border-top: 3px solid var(--gold); padding: 2rem 1.8rem;
+  }
+  .menu-card h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+  .menu-card .time {
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .menu-card p { font-size: 0.88rem; }
+
+  /* Feature strips */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .feature.flip { direction: rtl; }
+  .feature.flip > * { direction: ltr; }
+  .feature img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .feature-copy .label { margin-bottom: 0.8rem; }
+  .feature-copy h2 { margin-bottom: 1.2rem; }
+  .feature-copy p { margin-bottom: 0.9rem; }
+
+  /* Seasonal produce */
+  .produce-section { background: var(--sand); padding: 5rem 6rem; }
+  .produce-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .produce-item { text-align: center; padding: 1.5rem 1rem; background: var(--cream); }
+  .produce-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .produce-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--wine); margin-bottom: 0.3rem; }
+  .produce-item p { font-size: 0.8rem; }
+
+  /* Photo mosaic */
+  .mosaic { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 0.8rem; }
+  .mosaic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mosaic img:first-child { grid-row: 1 / 3; }
+
+  .subpage-nav {
+    background: var(--sand); padding: 1rem 6rem;
+    display: flex; gap: 0.5rem; align-items: center;
+    border-bottom: 1px solid rgba(92,26,26,0.1); flex-wrap: wrap;
+  }
+  .subpage-nav a {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; padding: 0.5rem 1rem;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .subpage-nav a:hover, .subpage-nav a.active { border-color: var(--wine); color: var(--wine); }
+  .subpage-nav span { color: var(--blush); font-size: 0.7rem; }
+
+  .cta-band { background: var(--wine); text-align: center; padding: 5rem 4rem; }
+  .cta-band h2 { color: var(--cream); margin-bottom: 0.8rem; }
+  .cta-band p { color: rgba(250,246,241,0.68); max-width: 50ch; margin: 0 auto 2rem; }
+
+  @media (max-width: 860px) {
+    .intro-band { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    .menu-section { padding: 3rem 1.5rem; }
+    .menu-cards { grid-template-columns: 1fr; }
+    .feature, .feature.flip { grid-template-columns: 1fr; direction: ltr; }
+    .feature img { height: 240px; }
+    .produce-section { padding: 3rem 1.5rem; }
+    .produce-grid { grid-template-columns: repeat(2, 1fr); }
+    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .mosaic img:first-child { grid-row: auto; }
+    .subpage-nav { padding: 0.8rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <a href="experience.html" class="active">Experience</a>
+      <div class="dropdown">
+        <a href="coaching-journey.html">The Coaching Journey</a>
+        <a href="feast-for-senses.html">A Feast for Your Senses</a>
+        <a href="investment.html">Your Investment in Clarity</a>
+      </div>
+    </li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a>
+  <div class="drawer-sub">
+    <a href="coaching-journey.html">↳ The Coaching Journey</a>
+    <a href="feast-for-senses.html">↳ A Feast for Your Senses</a>
+    <a href="investment.html">↳ Your Investment in Clarity</a>
+  </div>
+  <hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg');"></div>
+    <div class="page-hero-content">
+      <div class="label">A Deeper Dive</div>
+      <h1>A Feast for <em>Your Senses</em></h1>
+      <p>Thoughtfully prepared, beautifully balanced, and made from seasonal, locally grown ingredients.</p>
+    </div>
+  </div>
+
+  <div class="subpage-nav">
+    <span>A Deeper Dive:</span>
+    <a href="coaching-journey.html">The Coaching Journey</a>
+    <a href="feast-for-senses.html" class="active">A Feast for Your Senses</a>
+    <a href="investment.html">Your Investment in Clarity</a>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-band">
+    <div>
+      <div class="label">Savor the Journey</div>
+      <h2>Food that nourishes <em>more than the body</em></h2>
+      <p>Our meals are designed to nourish you — thoughtfully prepared, beautifully balanced, and made from seasonal, locally grown ingredients. We take great care to accommodate individual dietary needs so that every guest feels looked after.</p>
+      <p>Late April is an ideal moment for this retreat: the markets are full of new-season produce, and the energy of spring naturally invites renewal. Expect tender white and green asparagus, broad beans, fresh peas, the first strawberries, and vibrant spring herbs — ingredients that truly shine at this time of year.</p>
+    </div>
+    <div class="intro-img-grid">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/de6fa909014ae4148af3ac313e260108d87176da.jpg" alt="Local cuisine">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Artichoke-with-vinaigrette-1024x768.jpeg" alt="Artichoke vinaigrette">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/1e5ff4affc933d6a76ac1a885647dc4ebb8b374f.jpg" alt="Fresh food">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg" alt="Canapés">
+    </div>
+  </div>
+
+  <!-- CHEF FEATURE -->
+  <div class="section">
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="label">The Chef</div>
+        <h2>All dishes by Chef <em>Michael of Le Dix Sept</em></h2>
+        <p>All dishes will be curated and prepared by celebrated Executive Chef Michael of local gem, <a href="https://www.ledixsept.fr/welcome" target="_blank" style="color:var(--wine);">Le Dix Sept</a>. Michael's cooking brings a fresh, generous, and contemporary touch to the abundance and diversity of the local culinary availability.</p>
+        <p>In the French spirit of eating well, our main meal will be served at lunchtime, with a lighter, more relaxed meal in the evening — exactly as it should be done.</p>
+      </div>
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Michael-bio-768x1024.jpeg" alt="Chef Michael">
+    </div>
+  </div>
+
+  <!-- DAILY MENU -->
+  <div class="menu-section section-sand section">
+    <div class="menu-intro">
+      <div class="label">Each Day</div>
+      <h2>A beautiful <em>rhythm of meals</em></h2>
+      <p>Every meal is a moment — not just fuel. Here's what a typical day looks like at the table.</p>
+    </div>
+    <div class="menu-cards">
+      <div class="menu-card">
+        <div class="time">Morning · Breakfast</div>
+        <h3>A Beautiful Start to the Day</h3>
+        <p>Taken quietly on your own whenever you're ready, or enjoyed in the main kitchen with something warm cooked for you. Yogurts, fresh fruit, good bread, croissants, local honey and jams, and the option of a savoury dish made to order. Tea, coffee, and herbal infusions available throughout the day.</p>
+      </div>
+      <div class="menu-card">
+        <div class="time">Midday · The Main Event</div>
+        <h3>A Long, Leisurely Lunch</h3>
+        <p>In true French tradition, lunch is the main meal — unhurried, multi-course, and celebrated. Chef Michael brings seasonal ingredients and regional technique to the table. Paired with a curated selection of Bordeaux wines for those who wish.</p>
+      </div>
+      <div class="menu-card">
+        <div class="time">Evening · Dinner</div>
+        <h3>A Lighter Evening Meal</h3>
+        <p>A relaxed, convivial gathering — lighter fare but no less beautiful. Charcuterie, seasonal salads, warm bread, local cheeses, and the quiet hum of good conversation under French skies. The kind of evening you want to last forever.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINE FEATURE -->
+  <div class="section">
+    <div class="feature flip">
+      <div class="feature-copy">
+        <div class="label">Wine &amp; Beverages</div>
+        <h2>Exceptional pairings, <em>no pressure</em></h2>
+        <p>Throughout the week, we'll pair a selection of Bordeaux wines with our meals for those who wish to discover the region's extraordinary diversity. You're in the heart of one of the world's most celebrated wine regions — it would be a shame not to explore it.</p>
+        <p>For guests who prefer not to drink alcohol, high-quality non-alcoholic artisanal drinks will be offered. No one will ever feel pressured or left out — our focus is on enjoyment, not excess.</p>
+      </div>
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Bottles-of-wine-768x1024.jpg" alt="Bordeaux wines">
+    </div>
+  </div>
+
+  <!-- SEASONAL PRODUCE -->
+  <div class="produce-section">
+    <div class="centered" style="max-width:600px; margin-bottom:0;">
+      <div class="label label-center">Late April in Southwest France</div>
+      <h2>Spring's finest <em>ingredients</em></h2>
+      <p>The markets of Sainte-Foy-la-Grande come alive in late April. Here's what's in season when you arrive.</p>
+    </div>
+    <div class="produce-grid">
+      <div class="produce-item">
+        <div class="icon">🌿</div>
+        <h4>White &amp; Green Asparagus</h4>
+        <p>The prized harbinger of spring, at peak perfection in late April.</p>
+      </div>
+      <div class="produce-item">
+        <div class="icon">🫛</div>
+        <h4>Broad Beans &amp; Fresh Peas</h4>
+        <p>Bright, sweet, and just-picked from local farms surrounding the maison.</p>
+      </div>
+      <div class="produce-item">
+        <div class="icon">🍓</div>
+        <h4>First Strawberries</h4>
+        <p>The Gariguette variety — France's beloved spring strawberry, intensely fragrant.</p>
+      </div>
+      <div class="produce-item">
+        <div class="icon">🌸</div>
+        <h4>Spring Herbs</h4>
+        <p>Tarragon, chervil, chives and flat-leaf parsley — vibrant and full of flavour.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO MOSAIC -->
+  <div style="padding: 0 6rem 5rem;">
+    <div class="mosaic">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Sharing-dessert-platter-901x1024.jpeg" alt="Dessert platter">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Charcuterie-platter-768x1024.jpeg" alt="Charcuterie">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Artichoke-with-vinaigrette-1024x768.jpeg" alt="Artichoke">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/604f937f5a8b64ca482bbc90_image28-837x1024.png" alt="Wine tasting">
+      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg" alt="Canapés">
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="centered" style="max-width:700px; color:inherit;">
+      <div class="label label-center" style="color:var(--blush);">April 19–25, 2026</div>
+      <h2>Ready to feast on <em>all of it?</em></h2>
+      <p>Eight to ten women, a maison de maître, Chef Michael's table, and the finest wines of Bordeaux. Come join us.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn" style="background:var(--cream);color:var(--wine);">Reserve Your Spot</a>
+        <a href="investment.html" class="btn" style="background:transparent;border:1px solid rgba(250,246,241,0.4);color:var(--cream);">See Investment Details</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const drawer = document.getElementById('drawer');
+    const open = drawer.style.display === 'flex';
+    drawer.style.display = open ? 'none' : 'flex';
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('drawer').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>

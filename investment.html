@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Investment in Clarity — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .investment-hero-content { max-width: 760px; }
+
+  /* Main investment section */
+  .investment-main {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    padding: 6rem 6rem; align-items: start;
+  }
+  .price-block {
+    position: sticky; top: 100px;
+    background: var(--charcoal); padding: 3rem;
+    border-top: 4px solid var(--gold);
+  }
+  .price-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem; color: var(--blush); line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .price-currency {
+    font-size: 0.8rem; letter-spacing: 0.16em; color: rgba(250,246,241,0.4);
+    text-transform: uppercase; margin-bottom: 2rem;
+  }
+  .price-divider { border: none; border-top: 1px solid rgba(250,246,241,0.1); margin: 1.8rem 0; }
+  .price-includes { display: flex; flex-direction: column; gap: 0.9rem; }
+  .price-line { display: flex; gap: 0.8rem; align-items: flex-start; }
+  .price-line span:first-child { color: var(--gold); flex-shrink: 0; margin-top: 0.15rem; }
+  .price-line span:last-child { font-size: 0.88rem; color: rgba(250,246,241,0.72); line-height: 1.5; }
+  .price-block .btn { width: 100%; text-align: center; display: block; margin-top: 2rem; }
+
+  /* Copy side */
+  .investment-copy h2 { margin-bottom: 1.4rem; }
+  .investment-copy p { margin-bottom: 1.2rem; }
+  .investment-copy .btn { margin-top: 0.5rem; }
+
+  /* What's not included */
+  .not-included {
+    background: var(--sand); padding: 5rem 6rem;
+  }
+  .not-included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .exc-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+  .exc-list li { display: flex; gap: 0.9rem; font-size: 0.9rem; color: var(--mid); list-style: none; }
+  .exc-list li::before { content: '—'; color: rgba(92,26,26,0.3); flex-shrink: 0; }
+
+  /* Q&A strip */
+  .qa-strip {
+    background: var(--wine); padding: 4rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .qa-strip h2 { color: var(--cream); margin-bottom: 1rem; }
+  .qa-strip p { color: rgba(250,246,241,0.72); }
+  .qa-strip .label { color: var(--blush); }
+  .qa-strip .label::before { background: var(--blush); }
+
+  .subpage-nav {
+    background: var(--sand); padding: 1rem 6rem;
+    display: flex; gap: 0.5rem; align-items: center;
+    border-bottom: 1px solid rgba(92,26,26,0.1); flex-wrap: wrap;
+  }
+  .subpage-nav a {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; padding: 0.5rem 1rem;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .subpage-nav a:hover, .subpage-nav a.active { border-color: var(--wine); color: var(--wine); }
+  .subpage-nav span { color: var(--blush); font-size: 0.7rem; }
+
+  @media (max-width: 860px) {
+    .investment-main { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+    .price-block { position: static; }
+    .not-included { padding: 3rem 1.5rem; }
+    .not-included-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .qa-strip { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    .subpage-nav { padding: 0.8rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <a href="experience.html" class="active">Experience</a>
+      <div class="dropdown">
+        <a href="coaching-journey.html">The Coaching Journey</a>
+        <a href="feast-for-senses.html">A Feast for Your Senses</a>
+        <a href="investment.html">Your Investment in Clarity</a>
+      </div>
+    </li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a>
+  <div class="drawer-sub">
+    <a href="coaching-journey.html">↳ The Coaching Journey</a>
+    <a href="feast-for-senses.html">↳ A Feast for Your Senses</a>
+    <a href="investment.html">↳ Your Investment in Clarity</a>
+  </div>
+  <hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/10/b4fdf3b4645501dc17015801c4d1245799cfb541.jpg');"></div>
+    <div class="page-hero-content investment-hero-content">
+      <div class="label">A Deeper Dive</div>
+      <h1>Your Investment <em>in Clarity</em></h1>
+      <p>An intentional investment in your next chapter — for women standing at a meaningful turning point.</p>
+    </div>
+  </div>
+
+  <div class="subpage-nav">
+    <span>A Deeper Dive:</span>
+    <a href="coaching-journey.html">The Coaching Journey</a>
+    <a href="feast-for-senses.html">A Feast for Your Senses</a>
+    <a href="investment.html" class="active">Your Investment in Clarity</a>
+  </div>
+
+  <!-- MAIN INVESTMENT -->
+  <div class="investment-main">
+
+    <div class="investment-copy">
+      <div class="label">An Intentional Investment</div>
+      <h2>Designed for women at a <em>meaningful turning point</em></h2>
+      <p>Clarity Uncorked is intentionally small, deeply curated, and designed for women standing at a meaningful turning point.</p>
+      <p>This is not a typical retreat — and it's not meant to be. Over the course of a week in Southwest France, you'll step out of your daily roles and into a thoughtfully facilitated experience that blends coaching, conversation, cultural immersion, and spacious time to reflect.</p>
+      <p>Every detail is designed to support clarity, connection, and forward movement — before you arrive, while we're together, and after you return home.</p>
+      <p>We keep the cohort small by design. Fewer voices. Deeper conversations. Space to be fully present with yourself and others.</p>
+      <p>Clarity Uncorked is for women who are ready to pause with intention, invest in themselves without apology, and leave with a clearer sense of what comes next.</p>
+      <p style="font-style:italic; color:var(--wine);">If you're feeling a quiet pull rather than a rush of certainty, that's often the right place to begin.</p>
+      <a href="contact.html" class="btn" style="margin-top:1.5rem;">Contact Us to Apply</a>
+      <p style="margin-top:1rem; font-size:0.82rem; color:var(--mid);">Or attend an upcoming Q&amp;A to explore whether this experience is the right fit for you.</p>
+    </div>
+
+    <div class="price-block">
+      <div class="price-label">Investment · April 2026</div>
+      <div class="price-amount">$8,500</div>
+      <div class="price-currency">USD · Per Person</div>
+      <div class="price-includes">
+        <div class="price-line"><span>✦</span><span>Six nights in a private maison de maître</span></div>
+        <div class="price-line"><span>✦</span><span>All meals — breakfast, lunch, and dinner</span></div>
+        <div class="price-line"><span>✦</span><span>All beverages including Bordeaux wine pairings</span></div>
+        <div class="price-line"><span>✦</span><span>Private transportation during the retreat</span></div>
+        <div class="price-line"><span>✦</span><span>Curated excursions — markets, vineyards, Bordeaux</span></div>
+        <div class="price-line"><span>✦</span><span>Pre-retreat group call &amp; 1:1 coaching session</span></div>
+        <div class="price-line"><span>✦</span><span>On-site coaching throughout the week</span></div>
+        <div class="price-line"><span>✦</span><span>Post-retreat integration session</span></div>
+        <div class="price-line"><span>✦</span><span>Ongoing private community access</span></div>
+      </div>
+      <hr class="price-divider">
+      <p style="font-size:0.78rem; color:rgba(250,246,241,0.45); margin-bottom:0;">Group limited to 8–10 women. Application required.</p>
+      <a href="contact.html" class="btn" style="background:var(--gold);">Apply Now</a>
+    </div>
+
+  </div>
+
+  <!-- NOT INCLUDED -->
+  <div class="not-included">
+    <div class="not-included-grid">
+      <div>
+        <div class="label">What's Not Included</div>
+        <h2>A few things to <em>plan for</em></h2>
+        <p>Here's what falls outside the retreat so you can budget accordingly and travel prepared.</p>
+      </div>
+      <div>
+        <ul class="exc-list">
+          <li>Airfare to and from Bordeaux</li>
+          <li>Any alcohol or meals outside of the curated agenda</li>
+          <li>Personal purchases — market finds, boutique items, souvenirs</li>
+          <li>Additional spa treatments or add-on activities</li>
+          <li>Travel insurance (required — please arrange before arrival)</li>
+        </ul>
+        <p style="margin-top:1.5rem; font-size:0.85rem;">A great tip: fly into Paris, spend a night or two, then take the train to Bordeaux or all the way to Sainte-Foy-la-Grande. Worth every minute.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q&A STRIP -->
+  <div class="qa-strip">
+    <div>
+      <div class="label">Next Steps</div>
+      <h2>Not sure if this is <em>right for you?</em></h2>
+      <p>We'd love to talk it through. Reach out to apply, ask questions, or join an upcoming Q&amp;A where you can hear from Jen and Valerie directly and meet some of the other women considering the retreat.</p>
+      <p>No pressure, no hard sell — just an honest conversation about whether this is the right fit.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-start;">
+      <a href="contact.html" class="btn" style="background:var(--cream); color:var(--wine);">Contact Us to Apply</a>
+      <a href="faq.html" class="btn btn-ghost">Read the FAQ</a>
+      <a href="coaching-journey.html" class="btn btn-ghost">Learn About the Coaching Journey</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const drawer = document.getElementById('drawer');
+    const open = drawer.style.display === 'flex';
+    drawer.style.display = open ? 'none' : 'flex';
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('drawer').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>
