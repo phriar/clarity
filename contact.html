@@ -48,6 +48,12 @@
     padding: 1.2rem 1.5rem; margin-top: 1rem;
     font-size: 0.88rem; line-height: 1.6;
   }
+  .error-msg {
+    display: none; background: #8b0000; color: var(--cream);
+    padding: 1.2rem 1.5rem; margin-top: 1rem;
+    font-size: 0.88rem; line-height: 1.6;
+  }
+  .btn-sending { opacity: 0.6; pointer-events: none; }
 
   @media (max-width: 860px) {
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -115,7 +121,7 @@
         <div class="label">Get in Touch</div>
         <h2>Stay up to date with all <em>Clarity Uncorked</em> updates</h2>
         <p>Whether you have questions about the retreat, want to know about pricing, or are ready to secure your spot — we're here and we'd love to connect.</p>
-        <a href="/cdn-cgi/l/email-protection#6c04090000032c0f000d1e05181519020f031e070908420f0301" class="contact-email"><span class="__cf_email__" data-cfemail="462e232a2a2906252a27342f323f33282529342d23226825292b">[email&#160;protected]</span></a>
+        <a href="mailto:hello@clarityuncorked.com" class="contact-email">hello@clarityuncorked.com</a>
         <a href="https://www.instagram.com/clarityuncorked" target="_blank" class="contact-social">@clarityuncorked on Instagram ↗</a>
 
         <div class="contact-details">
@@ -141,7 +147,7 @@
       <div class="contact-form">
         <h3>Send us a message</h3>
         <p class="sub">We'll respond personally within 48 hours.</p>
-        <form id="contactForm" action="https://formspree.io/f/xkoveybb" method="POST">
+        <form id="contactForm">
           <div class="form-group">
             <div class="form-row">
               <input type="text" name="name" placeholder="Your Name" required>
@@ -149,11 +155,14 @@
             </div>
             <input type="text" name="subject" placeholder="Subject">
             <textarea name="message" placeholder="Tell us about yourself and what brought you here..." required></textarea>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn" id="submitBtn">Send Message</button>
           </div>
         </form>
         <div class="success-msg" id="successMsg">
           ✦ &nbsp; Thank you! We'll be in touch personally within 48 hours.
+        </div>
+        <div class="error-msg" id="errorMsg">
+          Something went wrong. Please email us directly at hello@clarityuncorked.com
         </div>
       </div>
 
@@ -169,42 +178,73 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
-      <a href="/cdn-cgi/l/email-protection#85ede0e9e9eac5e6e9e4f7ecf1fcf0ebe6eaf7eee0e1abe6eae8">Email</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
     </div>
     <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
   </footer>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Hamburger
-
-
-  // Form
-  const form = document.getElementById('contactForm');
-  const msg = document.getElementById('successMsg');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    // To use Formspree: remove e.preventDefault() and the lines below,
-    // replace YOUR_FORM_ID in the action attribute with your real Formspree ID.
-    form.style.display = 'none';
-    msg.style.display = 'block';
-  });
-</script>
 <script>
 (function() {
+  // Hamburger
   var ham = document.getElementById('hamburger');
   var drawer = document.getElementById('drawer');
-  if (!ham || !drawer) return;
+  if (ham && drawer) {
+    ham.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = drawer.style.display === 'flex';
+      drawer.style.display = isOpen ? 'none' : 'flex';
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+    drawer.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        drawer.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+        drawer.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }
 
-  ham.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var isOpen = drawer.style.display === 'flex';
-    drawer.style.display = isOpen ? 'none' : 'flex';
-    document.body.style.overflow = isOpen ? '' : 'hidden';
+  // Formspree AJAX submit
+  var form = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var successMsg = document.getElementById('successMsg');
+  var errorMsg = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.classList.add('btn-sending');
+    errorMsg.style.display = 'none';
+
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/xkoveybb', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .catch(function() {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.classList.remove('btn-sending');
+      errorMsg.style.display = 'block';
+    });
   });
-
-  drawer.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      drawer.style.display = 'none';
-      document.bod
+})();
+</script>
+</body>
+</html>
