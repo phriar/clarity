@@ -187,62 +187,31 @@
 
 <script>
 (function() {
-  // Hamburger
   var ham = document.getElementById('hamburger');
   var drawer = document.getElementById('drawer');
-  if (ham && drawer) {
-    ham.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = drawer.style.display === 'flex';
-      drawer.style.display = isOpen ? 'none' : 'flex';
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    });
-    drawer.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        drawer.style.display = 'none';
-        document.body.style.overflow = '';
-      });
-    });
-    document.addEventListener('click', function(e) {
-      if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
-        drawer.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    });
-  }
+  if (!ham || !drawer) return;
 
-  // Formspree AJAX submit
-  var form = document.getElementById('contactForm');
-  var submitBtn = document.getElementById('submitBtn');
-  var successMsg = document.getElementById('successMsg');
-  var errorMsg = document.getElementById('errorMsg');
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    submitBtn.textContent = 'Sending...';
-    submitBtn.classList.add('btn-sending');
-    errorMsg.style.display = 'none';
-
-    var data = new FormData(form);
-
-    fetch('https://formspree.io/f/xkoveybb', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      } else {
-        throw new Error('Network response was not ok');
-      }
-    })
-    .catch(function() {
-      submitBtn.textContent = 'Send Message';
-      submitBtn.classList.remove('btn-sending');
-      errorMsg.style.display = 'block';
+  // Close when clicking a nav link
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
     });
+  });
+
+  // Close when tapping outside
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
   });
 })();
 </script>

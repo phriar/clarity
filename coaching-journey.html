@@ -320,7 +320,7 @@
     document.body.style.overflow = isOpen ? '' : 'hidden';
   });
 
-  // Close when clicking a direct nav link (not sub-links, which navigate away anyway)
+  // Close when clicking a nav link
   drawer.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
       drawer.style.display = 'none';
