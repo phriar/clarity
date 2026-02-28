@@ -173,7 +173,7 @@
       </div>
     </div>
     <div class="hero-img">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/b4fdf3b4645501dc17015801c4d1245799cfb541.jpg" alt="Bordeaux vineyard">
+      <img src="images/hero-bg.jpg" alt="Bordeaux vineyard">
       <div class="hero-badge">
         <div class="date">April 19–25, 2026</div>
         <div class="loc">Bordeaux, France</div>
@@ -184,7 +184,7 @@
   <!-- ABOUT STRIP -->
   <div class="about-strip">
     <div class="about-img">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/2942e066827d8cfff144c2f3173c66da334a9e33.jpg" alt="Retreat setting">
+      <img src="images/hero-bg.jpg" alt="Retreat setting">
     </div>
     <div class="about-copy">
       <div class="label">Our Story</div>
@@ -288,19 +288,34 @@
 </div><!-- end page-body -->
 
 <script>
-  const _ham = document.getElementById('hamburger');
-  const _drawer = document.getElementById('drawer');
-  _ham.addEventListener('click', function() {
-    const isOpen = _drawer.style.display === 'flex';
-    _drawer.style.display = isOpen ? 'none' : 'flex';
+(function() {
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  if (!ham || !drawer) return;
+
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
     document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  _drawer.querySelectorAll('a').forEach(function(a) {
+
+  // Close when clicking a direct nav link (not sub-links, which navigate away anyway)
+  drawer.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-      _drawer.style.display = 'none';
+      drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });
+
+  // Close when tapping outside
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

@@ -128,7 +128,7 @@
 <div class="page-body">
 
   <div class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/10/b4fdf3b4645501dc17015801c4d1245799cfb541.jpg');"></div>
+    <div class="page-hero-bg" style="background-image:url('images/hero-bg.jpg');"></div>
     <div class="page-hero-content investment-hero-content">
       <div class="label">A Deeper Dive</div>
       <h1>Your Investment <em>in Clarity</em></h1>
@@ -234,19 +234,34 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const _ham = document.getElementById('hamburger');
-  const _drawer = document.getElementById('drawer');
-  _ham.addEventListener('click', function() {
-    const isOpen = _drawer.style.display === 'flex';
-    _drawer.style.display = isOpen ? 'none' : 'flex';
+(function() {
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  if (!ham || !drawer) return;
+
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
     document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  _drawer.querySelectorAll('a').forEach(function(a) {
+
+  // Close when clicking a direct nav link (not sub-links, which navigate away anyway)
+  drawer.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-      _drawer.style.display = 'none';
+      drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });
+
+  // Close when tapping outside
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

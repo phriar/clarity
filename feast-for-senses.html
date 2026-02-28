@@ -128,7 +128,7 @@
 <div class="page-body">
 
   <div class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg');"></div>
+    <div class="page-hero-bg" style="background-image:url('images/canapes.jpg');"></div>
     <div class="page-hero-content">
       <div class="label">A Deeper Dive</div>
       <h1>A Feast for <em>Your Senses</em></h1>
@@ -152,10 +152,10 @@
       <p>Late April is an ideal moment for this retreat: the markets are full of new-season produce, and the energy of spring naturally invites renewal. Expect tender white and green asparagus, broad beans, fresh peas, the first strawberries, and vibrant spring herbs — ingredients that truly shine at this time of year.</p>
     </div>
     <div class="intro-img-grid">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/de6fa909014ae4148af3ac313e260108d87176da.jpg" alt="Local cuisine">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Artichoke-with-vinaigrette-1024x768.jpeg" alt="Artichoke vinaigrette">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/1e5ff4affc933d6a76ac1a885647dc4ebb8b374f.jpg" alt="Fresh food">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg" alt="Canapés">
+      <img src="images/canapes.jpg" alt="Local cuisine">
+      <img src="images/artichoke.jpeg" alt="Artichoke vinaigrette">
+      <img src="images/canapes.jpg" alt="Fresh food">
+      <img src="images/canapes.jpg" alt="Canapés">
     </div>
   </div>
 
@@ -168,7 +168,7 @@
         <p>All dishes will be curated and prepared by celebrated Executive Chef Michael of local gem, <a href="https://www.ledixsept.fr/welcome" target="_blank" style="color:var(--wine);">Le Dix Sept</a>. Michael's cooking brings a fresh, generous, and contemporary touch to the abundance and diversity of the local culinary availability.</p>
         <p>In the French spirit of eating well, our main meal will be served at lunchtime, with a lighter, more relaxed meal in the evening — exactly as it should be done.</p>
       </div>
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Michael-bio-768x1024.jpeg" alt="Chef Michael">
+      <img src="images/michael-bio.jpeg" alt="Chef Michael">
     </div>
   </div>
 
@@ -207,7 +207,7 @@
         <p>Throughout the week, we'll pair a selection of Bordeaux wines with our meals for those who wish to discover the region's extraordinary diversity. You're in the heart of one of the world's most celebrated wine regions — it would be a shame not to explore it.</p>
         <p>For guests who prefer not to drink alcohol, high-quality non-alcoholic artisanal drinks will be offered. No one will ever feel pressured or left out — our focus is on enjoyment, not excess.</p>
       </div>
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Bottles-of-wine-768x1024.jpg" alt="Bordeaux wines">
+      <img src="images/canapes.jpg" alt="Bordeaux wines">
     </div>
   </div>
 
@@ -245,11 +245,11 @@
   <!-- PHOTO MOSAIC -->
   <div style="padding: 0 6rem 5rem;">
     <div class="mosaic">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Sharing-dessert-platter-901x1024.jpeg" alt="Dessert platter">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Charcuterie-platter-768x1024.jpeg" alt="Charcuterie">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Artichoke-with-vinaigrette-1024x768.jpeg" alt="Artichoke">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/10/604f937f5a8b64ca482bbc90_image28-837x1024.png" alt="Wine tasting">
-      <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/Canapes-1024x683.jpg" alt="Canapés">
+      <img src="images/dessert-platter.jpeg" alt="Dessert platter">
+      <img src="images/charcuterie.jpeg" alt="Charcuterie">
+      <img src="images/artichoke.jpeg" alt="Artichoke">
+      <img src="images/french-countryside.png" alt="Wine tasting">
+      <img src="images/canapes.jpg" alt="Canapés">
     </div>
   </div>
 
@@ -283,19 +283,34 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const _ham = document.getElementById('hamburger');
-  const _drawer = document.getElementById('drawer');
-  _ham.addEventListener('click', function() {
-    const isOpen = _drawer.style.display === 'flex';
-    _drawer.style.display = isOpen ? 'none' : 'flex';
+(function() {
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  if (!ham || !drawer) return;
+
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
     document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  _drawer.querySelectorAll('a').forEach(function(a) {
+
+  // Close when clicking a direct nav link (not sub-links, which navigate away anyway)
+  drawer.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-      _drawer.style.display = 'none';
+      drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });
+
+  // Close when tapping outside
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>
