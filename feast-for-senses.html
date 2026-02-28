@@ -91,7 +91,7 @@
   <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
-    <li>
+    <li class="has-dropdown">
       <a href="experience.html" class="active">Experience</a>
       <div class="dropdown">
         <a href="coaching-journey.html">The Coaching Journey</a>
@@ -275,23 +275,24 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
-      <a href="mailto:hello@clarityuncorked.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#b5ddd0d9d9daf5d6d9d4c7dcc1ccc0dbd6dac7ded0d19bd6dad8">Email</a>
     </div>
     <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
   </footer>
 
 </div>
 
-<script>
-  document.getElementById('hamburger').addEventListener('click', () => {
-    const drawer = document.getElementById('drawer');
-    const open = drawer.style.display === 'flex';
-    drawer.style.display = open ? 'none' : 'flex';
-    document.body.style.overflow = open ? '' : 'hidden';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const _ham = document.getElementById('hamburger');
+  const _drawer = document.getElementById('drawer');
+  _ham.addEventListener('click', function() {
+    const isOpen = _drawer.style.display === 'flex';
+    _drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('drawer').style.display = 'none';
+  _drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      _drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });

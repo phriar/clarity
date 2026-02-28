@@ -63,7 +63,7 @@
   <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
   <ul class="nav-links">
     <li><a href="about.html" class="active">About</a></li>
-    <li>
+    <li class="has-dropdown">
       <a href="experience.html">Experience</a>
       <div class="dropdown">
         <a href="coaching-journey.html">The Coaching Journey</a>
@@ -197,15 +197,19 @@
 </div>
 
 <script>
-  document.getElementById('hamburger').addEventListener('click', () => {
-    const drawer = document.getElementById('drawer');
-    const open = drawer.style.display === 'flex';
-    drawer.style.display = open ? 'none' : 'flex';
-    document.body.style.overflow = open ? '' : 'hidden';
+  const _ham = document.getElementById('hamburger');
+  const _drawer = document.getElementById('drawer');
+  _ham.addEventListener('click', function() {
+    const isOpen = _drawer.style.display === 'flex';
+    _drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('drawer').style.display = 'none';
+  _drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      _drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });
+</script>
+</body>
+</html>

@@ -118,7 +118,7 @@
   <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
-    <li>
+    <li class="has-dropdown">
       <a href="experience.html">Experience</a>
       <div class="dropdown">
         <a href="coaching-journey.html">The Coaching Journey</a>
@@ -235,51 +235,6 @@
         <img src="https://clarityuncorked.com/wp-content/uploads/2025/11/604f937f5a8b64ca482bbc90_image28-837x1024.png" alt="Local produce" loading="lazy">
         <div class="item-caption">Local Produce</div>
       </div>
-
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Sainte-Foy4.jpg" alt="Sainte-Foy-la-Grande" loading="lazy">
-        <div class="item-caption">Sainte-Foy-la-Grande</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Sainte-Foy-la-Grande_vue_Port-Sainte-Foy_2.jpg" alt="View from Port-Sainte-Foy" loading="lazy">
-        <div class="item-caption">Vue depuis Port-Sainte-Foy</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Tour_du_Temple_Sainte-Foy-la-Grande.JPG" alt="Tour du Temple" loading="lazy">
-        <div class="item-caption">Tour du Temple</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Place_du_March%C3%A9%2C_Sainte-Foy-la-Grande_1.jpg" alt="Place du Marché" loading="lazy">
-        <div class="item-caption">Place du Marché</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Rue_de_la_Vieille-Tour%2C_Sainte-Foy-la-Grande_1.jpg" alt="Rue de la Vieille-Tour" loading="lazy">
-        <div class="item-caption">Rue de la Vieille-Tour</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Rue_des_Lauriers%2C_Sainte-Foy-la-Grande_1.jpg" alt="Rue des Lauriers" loading="lazy">
-        <div class="item-caption">Rue des Lauriers</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Rue_Alphonse-de-Poitiers%2C_Sainte-Foy-la-Grande%2C_Gironde_1.jpg" alt="Rue Alphonse-de-Poitiers" loading="lazy">
-        <div class="item-caption">Rue Alphonse-de-Poitiers</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Place_Pierre-Cassignard%2C_Sainte-Foy-la-Grande%2C_Gironde.jpg" alt="Place Pierre-Cassignard" loading="lazy">
-        <div class="item-caption">Place Pierre-Cassignard</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Rue_du_Puits-des-Amours%2C_Sainte-Foy-la-Grande_1.jpg" alt="Rue du Puits-des-Amours" loading="lazy">
-        <div class="item-caption">Rue du Puits-des-Amours</div>
-      </div>
-      <div class="masonry-item" data-cat="food">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Foudres_%C3%A0_vin%2C_Sainte-Foy-la-Grande.jpg" alt="Wine barrels Sainte-Foy" loading="lazy">
-        <div class="item-caption">Foudres à Vin · Local Cellar</div>
-      </div>
-      <div class="masonry-item" data-cat="landscape">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Vivallivres%2C_Sainte-Foy-la-Grande.jpg" alt="Vivallivres bookshop" loading="lazy">
-        <div class="item-caption">Vivallivres · Town Centre</div>
-      </div>
     </div>
   </div>
 
@@ -324,7 +279,7 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
-      <a href="/cdn-cgi/l/email-protection#deb6bbb2b2b19ebdb2bfacb7aaa7abb0bdb1acb5bbbaf0bdb1b3">Email</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
     </div>
     <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
   </footer>
@@ -344,17 +299,18 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Hamburger
-  document.getElementById('hamburger').addEventListener('click', () => {
-    const drawer = document.getElementById('drawer');
-    const open = drawer.style.display === 'flex';
-    drawer.style.display = open ? 'none' : 'flex';
-    document.body.style.overflow = open ? '' : 'hidden';
+  const _ham = document.getElementById('hamburger');
+  const _drawer = document.getElementById('drawer');
+  _ham.addEventListener('click', function() {
+    const isOpen = _drawer.style.display === 'flex';
+    _drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
   });
-  document.getElementById('drawer').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('drawer').style.display = 'none';
+  _drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      _drawer.style.display = 'none';
       document.body.style.overflow = '';
     });
   });
@@ -414,4 +370,9 @@
   document.addEventListener('keydown', e => {
     if (lb.style.display !== 'flex') return;
     if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLef
+    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
+  });
+</script>
+</body>
+</html>
