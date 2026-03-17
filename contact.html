@@ -212,15 +212,22 @@
       headers: { 'Accept': 'application/json' }
     })
     .then(function(res) {
-      if (res.ok) {
-        successMsg.style.display = 'block';
-        form.reset();
-      } else {
-        return res.json().then(function(json) { throw json; });
-      }
+      return res.json().then(function(json) {
+        if (res.ok) {
+          successMsg.style.display = 'block';
+          form.reset();
+        } else {
+          var reason = (json.errors && json.errors.map(function(e){ return e.message; }).join(', ')) || json.error || ('Status ' + res.status);
+          errorMsg.innerHTML = '⚠️ Error: ' + reason + '<br><small>Please email us at <a href="mailto:hello@clarityuncorked.com" style="color:inherit">hello@clarityuncorked.com</a></small>';
+          errorMsg.style.display = 'block';
+          console.error('Formspree error:', json);
+        }
+      });
     })
-    .catch(function() {
+    .catch(function(err) {
+      errorMsg.innerHTML = '⚠️ Network error — please email us at <a href="mailto:hello@clarityuncorked.com" style="color:inherit">hello@clarityuncorked.com</a>';
       errorMsg.style.display = 'block';
+      console.error('Fetch error:', err);
     })
     .finally(function() {
       submitBtn.textContent = 'Send Message';
