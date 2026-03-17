@@ -147,7 +147,7 @@
       <div class="contact-form">
         <h3>Send us a message</h3>
         <p class="sub">We'll respond personally within 48 hours.</p>
-        <form id="contactForm">
+        <form id="contactForm" action="https://formspree.io/f/xkoveybb" method="POST">
           <div class="form-group">
             <div class="form-row">
               <input type="text" name="name" placeholder="Your Name" required>
@@ -186,6 +186,51 @@
 </div>
 
 <script>
+// Formspree AJAX submission
+(function() {
+  var form = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var successMsg = document.getElementById('successMsg');
+  var errorMsg = document.getElementById('errorMsg');
+
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Loading state
+    submitBtn.textContent = 'Sending…';
+    submitBtn.classList.add('btn-sending');
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/xkoveybb', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      if (res.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        return res.json().then(function(json) { throw json; });
+      }
+    })
+    .catch(function() {
+      errorMsg.style.display = 'block';
+    })
+    .finally(function() {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.classList.remove('btn-sending');
+    });
+  });
+})();
+</script>
+
+<script>
 (function() {
   var ham = document.getElementById('hamburger');
   var drawer = document.getElementById('drawer');
@@ -200,20 +245,4 @@
 
   // Close when clicking a nav link
   drawer.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      drawer.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-  });
-
-  // Close when tapping outside
-  document.addEventListener('click', function(e) {
-    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
-      drawer.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-  });
-})();
-</script>
-</body>
-</html>
+    
