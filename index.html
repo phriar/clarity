@@ -34,12 +34,16 @@
     border-left: 3px solid var(--gold);
   }
   .hero-badge .date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; color: var(--wine);
+    display: inline-block; text-decoration: none;
+    font-family: 'Jost', sans-serif; font-size: 0.76rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--wine); color: var(--cream);
+    padding: 0.7rem 1.2rem; transition: background 0.2s;
   }
+  .hero-badge .date:hover { background: var(--gold); }
   .hero-badge .loc {
     font-size: 0.7rem; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--mid); margin-top: 0.2rem;
+    text-transform: uppercase; color: var(--mid); margin-top: 0.6rem;
   }
 
   /* ─── ABOUT STRIP ─── */
@@ -175,7 +179,7 @@
     <div class="hero-img">
       <img src="images/hero-bg.jpg" alt="Bordeaux vineyard">
       <div class="hero-badge">
-        <div class="date">Sign up for our next journey in April 2027</div>
+        <a href="contact.html" class="date">Sign up for our next journey in April 2027</a>
         <div class="loc">Bordeaux, France</div>
       </div>
     </div>
