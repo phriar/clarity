@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Retreat — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ─── PHASE BLOCKS ─── */
+  .phase {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    padding: 5rem 6rem;
+    border-bottom: 1px solid rgba(92,26,26,0.08);
+  }
+  .phase:last-of-type { border-bottom: none; }
+  .phase.flip { direction: rtl; }
+  .phase.flip > * { direction: ltr; }
+  .phase-img img {
+    width: 100%; height: 420px; object-fit: cover; display: block;
+  }
+  .phase-copy .label { margin-bottom: 0.8rem; }
+  .phase-copy h2 { margin-bottom: 1.2rem; font-size: clamp(1.8rem, 3vw, 2.8rem); }
+  .phase-copy p { margin-bottom: 1rem; }
+
+  /* ─── PHOTO GRID ─── */
+  .recap-gallery { padding: 1rem 6rem 5rem; }
+  .masonry { columns: 3; column-gap: 1rem; }
+  .masonry-item {
+    break-inside: avoid; margin-bottom: 1rem;
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .masonry-item img {
+    width: 100%; display: block;
+    transition: transform 0.4s ease;
+  }
+  .masonry-item:hover img { transform: scale(1.04); }
+  .item-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 1rem 0.9rem;
+    background: linear-gradient(to top, rgba(42,33,24,0.7) 0%, transparent 100%);
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--blush); opacity: 0; transition: opacity 0.3s;
+  }
+  .masonry-item:hover .item-caption { opacity: 1; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(42,33,24,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lb-inner {
+    position: relative; display: flex;
+    align-items: center; gap: 1.5rem; max-width: 90vw;
+  }
+  .lb-inner img {
+    max-width: 80vw; max-height: 88vh;
+    object-fit: contain; display: block;
+  }
+  .lb-btn {
+    background: none; border: 1px solid rgba(232,201,176,0.3);
+    color: var(--blush); width: 3rem; height: 3rem;
+    font-size: 1.3rem; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lb-btn:hover { background: var(--wine); border-color: var(--wine); }
+  .lb-close {
+    position: absolute; top: -3.2rem; right: 0;
+    border-radius: 50%; font-size: 1rem;
+  }
+  .lb-counter {
+    position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.7rem; letter-spacing: 0.16em; color: rgba(232,201,176,0.4);
+  }
+
+  /* ─── FEEDBACK PLACEHOLDER ─── */
+  .feedback-note {
+    background: var(--charcoal); padding: 4rem 6rem; text-align: center;
+  }
+  .feedback-note .label { justify-content: center; color: var(--blush); }
+  .feedback-note .label::before { display: none; }
+  .feedback-note p { color: rgba(250,246,241,0.6); max-width: 50ch; margin: 0 auto; }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--wine); text-align: center; padding: 5rem 4rem;
+  }
+  .cta-band h2 { color: var(--cream); margin-bottom: 0.8rem; }
+  .cta-band p { color: rgba(250,246,241,0.68); max-width: 50ch; margin: 0 auto 2rem; }
+
+  @media (max-width: 860px) {
+    .phase, .phase.flip { grid-template-columns: 1fr; gap: 2rem; direction: ltr; padding: 3rem 1.5rem; }
+    .phase-img img { height: 260px; }
+    .recap-gallery { padding: 1rem 1.5rem 4rem; }
+    .masonry { columns: 2; }
+    .feedback-note { padding: 3rem 1.5rem; }
+  }
+  @media (max-width: 500px) {
+    .masonry { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li class="has-dropdown">
+      <a href="experience.html">Experience</a>
+      <div class="dropdown">
+        <a href="coaching-journey.html">The Coaching Journey</a>
+        <a href="feast-for-senses.html">A Feast for Your Senses</a>
+      </div>
+    </li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="2026-retreat.html" class="active">2026 Retreat</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a>
+  <div class="drawer-sub">
+    <a href="coaching-journey.html">↳ The Coaching Journey</a>
+    <a href="feast-for-senses.html">↳ A Feast for Your Senses</a>
+  </div>
+  <hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="2026-retreat.html">2026 Retreat</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('images/maison-m-retreat-14.jpg');"></div>
+    <div class="page-hero-content">
+      <div class="label">April 2026</div>
+      <h1>Inside the <em>2026 Retreat</em></h1>
+      <p>Six days in a maison de maître outside Bordeaux — vineyards, coaching, and a table that never seemed to empty.</p>
+    </div>
+  </div>
+
+  <div class="section-narrow">
+    <div class="centered" style="max-width:760px;">
+      <div class="label">A Week to Remember</div>
+      <h2>The first <em>Clarity Uncorked</em> retreat</h2>
+      <p style="margin-top:1rem;">In April 2026, a small group of women arrived in Sainte-Foy-la-Grande as strangers and left as friends. Over six days they slowed down, reconnected with themselves, and made room for what's next — all set against the vineyards and golden light of Bordeaux.</p>
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <div class="phase-img">
+      <img src="images/clarity-2026-c.jpg" alt="Arrival at the maison de maître">
+    </div>
+    <div class="phase-copy">
+      <div class="label">Day One</div>
+      <h2>Arrival at the <em>Maison</em></h2>
+      <p>The week began with welcome drinks on the terrace, a tour of the private maison de maître, and the first long, unhurried dinner together — the kind that sets the tone for everything that follows.</p>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase flip">
+    <div class="phase-img">
+      <img src="images/IMG_0937.jpg" alt="Coaching session among the vineyards">
+    </div>
+    <div class="phase-copy">
+      <div class="label">Mornings</div>
+      <h2>Reflection Among the <em>Vineyards</em></h2>
+      <p>Mornings were spent in coaching circles and quiet one-on-one sessions, with the Bordeaux countryside as a backdrop for honest conversation, journaling, and a fresh look at what's next.</p>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <div class="phase-img">
+      <img src="images/IMG_1010.jpg" alt="Dinner with Chef Michael">
+    </div>
+    <div class="phase-copy">
+      <div class="label">Evenings</div>
+      <h2>A Feast for the <em>Senses</em></h2>
+      <p>Evenings belonged to Chef Michael's table — local, seasonal dishes paired with the region's finest wines, shared over conversation that ran long into the night.</p>
+    </div>
+  </div>
+
+  <!-- PHOTO RECAP -->
+  <div class="section-narrow" style="padding-bottom:1rem;">
+    <div class="centered">
+      <div class="label">The Week, In Photos</div>
+      <h2>More from <em>April 2026</em></h2>
+    </div>
+  </div>
+  <div class="recap-gallery">
+    <div class="masonry" id="masonry">
+      <div class="masonry-item"><img src="images/IMG_0900.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Arrival Day</div></div>
+      <div class="masonry-item"><img src="images/IMG_0912.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Golden Hour</div></div>
+      <div class="masonry-item"><img src="images/IMG_0914.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Vineyard Afternoon</div></div>
+      <div class="masonry-item"><img src="images/IMG_0928.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Around the Table</div></div>
+      <div class="masonry-item"><img src="images/IMG_0929.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Quiet Moments</div></div>
+      <div class="masonry-item"><img src="images/IMG_0943.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">The Maison</div></div>
+      <div class="masonry-item"><img src="images/IMG_0964.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Coaching Circle</div></div>
+      <div class="masonry-item"><img src="images/IMG_0973.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Bordeaux Countryside</div></div>
+      <div class="masonry-item"><img src="images/IMG_0994.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Wine &amp; Conversation</div></div>
+      <div class="masonry-item"><img src="images/IMG_1012.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Dinner with Chef Michael</div></div>
+      <div class="masonry-item"><img src="images/IMG_1067.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Evening Light</div></div>
+      <div class="masonry-item"><img src="images/IMG_1092.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Group Moments</div></div>
+      <div class="masonry-item"><img src="images/IMG_1096.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">The Dordogne</div></div>
+      <div class="masonry-item"><img src="images/IMG_1097.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Market Morning</div></div>
+      <div class="masonry-item"><img src="images/IMG_1099.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Vineyard Walk</div></div>
+      <div class="masonry-item"><img src="images/IMG_1116.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Reflection</div></div>
+      <div class="masonry-item"><img src="images/IMG_1126.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Around the Table</div></div>
+      <div class="masonry-item"><img src="images/IMG_1131.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Sunset in Bordeaux</div></div>
+      <div class="masonry-item"><img src="images/IMG_1160.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Last Evening</div></div>
+      <div class="masonry-item"><img src="images/IMG_1179.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Farewell</div></div>
+      <div class="masonry-item"><img src="images/IMG_1181.jpg" alt="Clarity Uncorked 2026" loading="lazy"><div class="item-caption">Clarity Uncorked 2026</div></div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK PLACEHOLDER -->
+  <div class="feedback-note">
+    <div class="label">In Their Words</div>
+    <p>Stories from our 2026 guests are coming soon — check back as we share what this retreat meant to the women who were there.</p>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="centered" style="color:inherit;">
+      <h2>Want to be part of the <em>next one?</em></h2>
+      <p>Clarity Uncorked returns to Bordeaux in April 2027. Space is intentionally limited.</p>
+      <a href="contact.html" class="btn" style="background:var(--cream); color:var(--wine);">Get in Touch</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="2026-retreat.html">2026 Retreat</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-btn" id="lb-prev">&#8592;</button>
+    <div style="position:relative;">
+      <button class="lb-btn lb-close" id="lb-close">&#x2715;</button>
+      <img id="lb-img" src="" alt="">
+      <div class="lb-counter" id="lb-counter"></div>
+    </div>
+    <button class="lb-btn" id="lb-next">&#8594;</button>
+  </div>
+</div>
+
+<script>
+  // Lightbox
+  const allItems = Array.from(document.querySelectorAll('.masonry-item'));
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  let cur = 0;
+
+  function openLb(i) {
+    cur = i;
+    lbImg.src = allItems[cur].querySelector('img').src;
+    lbCounter.textContent = (cur + 1) + ' / ' + allItems.length;
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.style.display = 'none'; document.body.style.overflow = ''; }
+
+  allItems.forEach((el, i) => {
+    el.addEventListener('click', () => openLb(i));
+  });
+
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.getElementById('lb-prev').addEventListener('click', () => {
+    cur = (cur - 1 + allItems.length) % allItems.length;
+    lbImg.src = allItems[cur].querySelector('img').src;
+    lbCounter.textContent = (cur + 1) + ' / ' + allItems.length;
+  });
+  document.getElementById('lb-next').addEventListener('click', () => {
+    cur = (cur + 1) % allItems.length;
+    lbImg.src = allItems[cur].querySelector('img').src;
+    lbCounter.textContent = (cur + 1) + ' / ' + allItems.length;
+  });
+  document.addEventListener('keydown', e => {
+    if (lb.style.display !== 'flex') return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
+  });
+</script>
+<script>
+(function() {
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  if (!ham || !drawer) return;
+
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
