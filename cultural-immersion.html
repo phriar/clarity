@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cultural Immersion — Clarity Uncorked</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ─── INTRO ─── */
+  .intro-img-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+  .intro-img-grid img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.9; }
+
+  /* ─── ACTIVITY OVERVIEW GRID ─── */
+  .activity-section { background: var(--sand); padding: 5rem 6rem; }
+  .activity-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .activity-item { text-align: center; padding: 1.5rem 1rem; background: var(--cream); }
+  .activity-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .activity-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--wine); margin-bottom: 0.3rem; }
+  .activity-item p { font-size: 0.8rem; }
+
+  /* ─── FEATURE BLOCKS ─── */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .feature.flip { direction: rtl; }
+  .feature.flip > * { direction: ltr; }
+  .feature img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .feature-copy .label { margin-bottom: 0.8rem; }
+  .feature-copy h2 { margin-bottom: 1.2rem; }
+  .feature-copy p { margin-bottom: 0.9rem; }
+
+  /* ─── SUB-PAGE NAV STRIP ─── */
+  .subpage-nav {
+    background: var(--sand);
+    padding: 1rem 6rem;
+    display: flex; gap: 0.5rem; align-items: center;
+    border-bottom: 1px solid rgba(92,26,26,0.1);
+    flex-wrap: wrap;
+  }
+  .subpage-nav a {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; padding: 0.5rem 1rem;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .subpage-nav a:hover, .subpage-nav a.active {
+    border-color: var(--wine); color: var(--wine);
+  }
+  .subpage-nav span { color: var(--blush); font-size: 0.7rem; }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: var(--wine); text-align: center; padding: 5rem 4rem;
+  }
+  .cta-band h2 { color: var(--cream); margin-bottom: 0.8rem; }
+  .cta-band p { color: rgba(250,246,241,0.68); max-width: 50ch; margin: 0 auto 2rem; }
+
+  @media (max-width: 860px) {
+    .intro-img-grid { grid-template-columns: 1fr; }
+    .activity-section { padding: 3rem 1.5rem; }
+    .activity-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature, .feature.flip { grid-template-columns: 1fr; gap: 2rem; direction: ltr; padding: 0; }
+    .feature img { height: 260px; }
+    .subpage-nav { padding: 0.8rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Clarity <em>Uncorked</em></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li class="has-dropdown">
+      <a href="experience.html">Experience</a>
+      <div class="dropdown">
+        <a href="coaching-journey.html">The Coaching Journey</a>
+        <a href="feast-for-senses.html">A Feast for Your Senses</a>
+        <a href="cultural-immersion.html">Cultural Immersion</a>
+      </div>
+    </li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="2026-retreat.html">2026 Retreat</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Join the Retreat</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="drawer">
+  <a href="index.html">Home</a><hr>
+  <a href="about.html">About</a><hr>
+  <a href="experience.html">Experience</a>
+  <div class="drawer-sub">
+    <a href="coaching-journey.html">↳ The Coaching Journey</a>
+    <a href="feast-for-senses.html">↳ A Feast for Your Senses</a>
+    <a href="cultural-immersion.html">↳ Cultural Immersion</a>
+  </div>
+  <hr>
+  <a href="gallery.html">Gallery</a><hr>
+  <a href="2026-retreat.html">2026 Retreat</a><hr>
+  <a href="faq.html">FAQ</a><hr>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
+</div>
+
+<div class="page-body">
+
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('images/IMG_0973.jpg');"></div>
+    <div class="page-hero-content">
+      <div class="label">A Deeper Dive</div>
+      <h1>Cultural <em>Immersion</em></h1>
+      <p>Beyond the coaching and the table — the experiences that connect you to the land, the history, and yourself.</p>
+    </div>
+  </div>
+
+  <div class="subpage-nav">
+    <span>A Deeper Dive:</span>
+    <a href="coaching-journey.html">The Coaching Journey</a>
+    <a href="feast-for-senses.html">A Feast for Your Senses</a>
+    <a href="cultural-immersion.html" class="active">Cultural Immersion</a>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-band">
+    <div>
+      <div class="label">More Than a Retreat</div>
+      <h2>Bordeaux, lived <em>not just visited</em></h2>
+      <p>Clarity isn't only found in stillness — it's also found in motion, in history, and in trying something new. Throughout the week, we step beyond the maison to experience the region the way locals do.</p>
+      <p>From e-bike rides through the vineyards to a guided sound bath, these moments are woven between the coaching and the meals — a chance to be fully present in your body and in Bordeaux itself.</p>
+    </div>
+    <div class="intro-img-grid">
+      <img src="images/IMG_6907.jpg" alt="E-bikes ready for a vineyard ride">
+      <img src="images/IMG_1160.jpg" alt="Walking the streets of Sainte-Foy-la-Grande">
+      <img src="images/maison-m-retreat-154.jpg" alt="Walking through the vineyards">
+    </div>
+  </div>
+
+  <!-- ACTIVITY OVERVIEW -->
+  <div class="activity-section">
+    <div class="centered" style="max-width:600px; margin-bottom:0;">
+      <div class="label label-center">What's Included</div>
+      <h2>Five ways we <em>get out there</em></h2>
+      <p>A taste of what fills the time between coaching sessions and long meals.</p>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-item">
+        <div class="icon">🚴</div>
+        <h4>Bike Rides</h4>
+        <p>E-bike rides through the vineyards surrounding the maison.</p>
+      </div>
+      <div class="activity-item">
+        <div class="icon">🍷</div>
+        <h4>Wine History &amp; Culture</h4>
+        <p>Guided tastings that bring Bordeaux's winemaking heritage to life.</p>
+      </div>
+      <div class="activity-item">
+        <div class="icon">🔔</div>
+        <h4>Sound Bath</h4>
+        <p>A guided sound bath session for deep rest and reflection.</p>
+      </div>
+      <div class="activity-item">
+        <div class="icon">🧘‍♀️</div>
+        <h4>Pilates</h4>
+        <p>Gentle morning movement to ground you in your body.</p>
+      </div>
+      <div class="activity-item">
+        <div class="icon">🚶‍♀️</div>
+        <h4>Guided Walking Tours</h4>
+        <p>Explore the history and charm of the surrounding villages on foot.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 1: BIKE RIDES -->
+  <div class="section">
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="label">On Two Wheels</div>
+        <h2>Bike Rides Through the <em>Vineyards</em></h2>
+        <p>One of the week's most joyful mornings is spent on e-bikes, riding through the vineyards and along the river that surrounds the maison. No experience needed — just an easy, guided ride through some of the most beautiful countryside in France.</p>
+        <p>It's a chance to feel the scale of the landscape that's been growing the wine on your table all week — and to laugh together along the way.</p>
+      </div>
+      <img src="images/IMG_0962.jpg" alt="Group cycling through the vineyards">
+    </div>
+  </div>
+
+  <!-- FEATURE 2: WINE HISTORY -->
+  <div class="section section-sand">
+    <div class="feature flip">
+      <div class="feature-copy">
+        <div class="label">In the Heart of Bordeaux</div>
+        <h2>Wine History &amp; <em>Culture</em></h2>
+        <p>You're staying in one of the world's most celebrated wine regions — so we make time to actually understand it. Guided tastings introduce the appellations, the terroir, and the centuries of history behind what's in your glass.</p>
+        <p>No pressure, no exam — just an approachable, hands-on introduction led by people who know and love this land.</p>
+      </div>
+      <img src="images/IMG_1131.jpg" alt="A guided wine tasting in Bordeaux">
+    </div>
+  </div>
+
+  <!-- FEATURE 3: SOUND BATH -->
+  <div class="section">
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="label">Stillness</div>
+        <h2>A Guided <em>Sound Bath</em></h2>
+        <p>Somewhere in the middle of the week, the pace slows all the way down. A guided sound bath — gongs and singing bowls — gives your nervous system permission to fully exhale.</p>
+        <p>For many women, it's one of the most memorable moments of the retreat: no agenda, no conversation, just sound and stillness.</p>
+      </div>
+      <img src="images/IMG_1097.jpg" alt="Sound bath with gongs and singing bowls">
+    </div>
+  </div>
+
+  <!-- FEATURE 4: WALKING TOURS -->
+  <div class="section section-sand">
+    <div class="feature flip">
+      <div class="feature-copy">
+        <div class="label">On Foot</div>
+        <h2>Guided Walking <em>Tours</em></h2>
+        <p>We wander the cobblestone streets of Sainte-Foy-la-Grande and the surrounding villages with a local guide, learning the history behind the architecture, the markets, and the rhythms of daily life in this part of France.</p>
+        <p>It's an easy, unhurried way to feel like a local rather than a tourist — even if it's your first time in Bordeaux.</p>
+      </div>
+      <img src="images/clarity-2026-c.jpg" alt="Guided walking tour through a French town">
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="centered" style="color:inherit;">
+      <div class="label label-center" style="color:var(--blush);">April 2027</div>
+      <h2>Curious to experience it <em>yourself?</em></h2>
+      <p>Space is intentionally limited. Reach out and we'll walk you through everything.</p>
+      <a href="contact.html" class="btn" style="background:var(--cream); color:var(--wine);">Get in Touch</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Clarity <em>Uncorked</em></a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="2026-retreat.html">2026 Retreat</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
+      <a href="mailto:hello@clarityuncorked.com">Email</a>
+    </div>
+    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  var ham = document.getElementById('hamburger');
+  var drawer = document.getElementById('drawer');
+  if (!ham || !drawer) return;
+
+  ham.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drawer.style.display === 'flex';
+    drawer.style.display = isOpen ? 'none' : 'flex';
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (drawer.style.display === 'flex' && !drawer.contains(e.target) && e.target !== ham) {
+      drawer.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
