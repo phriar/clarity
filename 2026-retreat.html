@@ -76,13 +76,26 @@
     font-size: 0.7rem; letter-spacing: 0.16em; color: rgba(232,201,176,0.4);
   }
 
-  /* ─── FEEDBACK PLACEHOLDER ─── */
-  .feedback-note {
-    background: var(--charcoal); padding: 4rem 6rem; text-align: center;
+  /* ─── TESTIMONIALS ─── */
+  .retreat-quote-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;
   }
-  .feedback-note .label { justify-content: center; color: var(--blush); }
-  .feedback-note .label::before { display: none; }
-  .feedback-note p { color: rgba(250,246,241,0.6); max-width: 50ch; margin: 0 auto; }
+  .retreat-quote {
+    background: var(--cream); border-left: 4px solid var(--gold);
+    padding: 2.5rem 2rem 2rem; display: flex; flex-direction: column;
+  }
+  .rqmark {
+    font-family: 'Cormorant Garamond', serif; font-size: 4rem;
+    color: var(--gold); line-height: 0.7; margin-bottom: 1rem; opacity: 0.55;
+  }
+  .retreat-quote blockquote {
+    font-style: italic; font-size: 0.97rem; line-height: 1.8;
+    color: var(--charcoal); flex: 1; margin: 0 0 1.4rem;
+  }
+  .rq-attr {
+    font-size: 0.69rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+  }
 
   /* ─── CTA BAND ─── */
   .cta-band {
@@ -96,7 +109,7 @@
     .phase-img img { height: 260px; }
     .recap-gallery { padding: 1rem 1.5rem 4rem; }
     .masonry { columns: 2; }
-    .feedback-note { padding: 3rem 1.5rem; }
+    .retreat-quote-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 500px) {
     .masonry { columns: 1; }
@@ -119,6 +132,7 @@
     </li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="2026-retreat.html" class="active">2026 Retreat</a></li>
+    <li><a href="testimonials.html">Testimonials</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -140,6 +154,7 @@
   <hr>
   <a href="gallery.html">Gallery</a><hr>
   <a href="2026-retreat.html">2026 Retreat</a><hr>
+  <a href="testimonials.html">Testimonials</a><hr>
   <a href="faq.html">FAQ</a><hr>
   <a href="contact.html">Contact</a>
   <a href="contact.html" class="drawer-cta btn">Join the Retreat</a>
@@ -277,10 +292,54 @@
     </div>
   </div>
 
-  <!-- FEEDBACK PLACEHOLDER -->
-  <div class="feedback-note">
-    <div class="label">In Their Words</div>
-    <p>Stories from our 2026 guests are coming soon — check back as we share what this retreat meant to the women who were there.</p>
+  <!-- TESTIMONIALS -->
+  <div class="section" style="background:var(--sand);">
+    <div class="centered" style="max-width:620px; margin-bottom:0;">
+      <div class="label label-center">In Their Words</div>
+      <h2>What our <em>guests said</em></h2>
+    </div>
+    <div class="retreat-quote-grid">
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>A week's vacation for your soul, with real movement forward for your mind. The first evening apéro — tasting the French vibe while getting to know each other — set the tone for everything that followed. I left ready to move forth boldly.</blockquote>
+        <div class="rq-attr">Francophile &amp; Board Director</div>
+      </div>
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>For me, Clarity Uncorked was an exploration of the possible. I saw options I'd never before considered for myself. For the first time — perhaps ever — I was thinking with my heart as well as my head.</blockquote>
+        <div class="rq-attr">A Perpetual Student Searching for Joy</div>
+      </div>
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>Clarity Uncorked gave me time and permission to work on myself — space to examine my priorities and make sure they're in alignment as I move forward. A wonderful week.</blockquote>
+        <div class="rq-attr">Cambridge Executive MBA Candidate</div>
+      </div>
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>An amazing week with a fantastic group of women in a fabulous location — the perfect mix of culture, food, relaxation, and time for real introspection. You could tell the week was curated with intention, by people who knew exactly what they were doing.</blockquote>
+        <div class="rq-attr">Mid-Career Executive Seeking Change</div>
+      </div>
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>Clarity Uncorked is a physical and mental journey that pushes you outside your comfort zone, creates real community, and — for me — truly uncorked something. It reconnected me with a sense of adventure and joy. I came in with mild apprehension about whether it would be worth it. I am very satisfied.</blockquote>
+        <div class="rq-attr">Geopolitical and National Security Expert</div>
+      </div>
+
+      <div class="retreat-quote">
+        <div class="rqmark">&ldquo;</div>
+        <blockquote>From my arrival, I stepped into a magical setting where the rooms and gardens created a peaceful space to connect over amazing food and wine. I have never experienced anything like Clarity Uncorked — and I can't imagine doing this with anyone else.</blockquote>
+        <div class="rq-attr">Retired Executive Embracing Abundance</div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="testimonials.html" class="btn btn-ghost">Read all 7 reviews →</a>
+    </div>
   </div>
 
   <!-- CTA BAND -->
@@ -299,6 +358,7 @@
       <a href="experience.html">Experience</a>
       <a href="gallery.html">Gallery</a>
       <a href="2026-retreat.html">2026 Retreat</a>
+      <a href="testimonials.html">Testimonials</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
