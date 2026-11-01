@@ -1,0 +1,3 @@
+# Keep the README out of the published website (the repo itself is still public on github.com).
+exclude:
+  - README.md

@@ -8,6 +8,24 @@ This guide covers everything you need to update the site yourself, with or witho
 
 ---
 
+## Repo & account details
+
+| Item | Value |
+|---|---|
+| Live site | https://clarityuncorked.com |
+| Hosting | GitHub Pages, served from the `main` branch, root folder |
+| Repo | https://github.com/phriar/clarity (owned by the `phriar` account) |
+| Account used to edit | `JenH19` (added as a collaborator with write access) |
+| Local folder | `~/Documents/Clarity_website/clarity` |
+| Remote URL | `git@github.com:phriar/clarity.git` (SSH) |
+| Domain | The `CNAME` file in the repo root contains `clarityuncorked.com`. Don't delete it. |
+
+Pushing to `main` is what publishes the site. There is no build step.
+
+**This README is not published on the website.** `_config.yml` excludes it from GitHub Pages, but the repo is public, so anyone can read it on github.com. Never put passwords, tokens, or private keys in it.
+
+---
+
 ## How the site works
 
 1. All the website files live in this folder, on your computer.
@@ -130,11 +148,16 @@ Within a minute or two, [clarityuncorked.com](https://clarityuncorked.com) will 
 
 ### A note on logging in (authentication)
 
-If you're using **this same Mac** (same login), `git push` should just work — it's already signed in to GitHub and won't ask for a password.
+The repo is owned by `phriar`, but all editing is done as **`JenH19`**, which is a collaborator on the repo.
 
-If you ever set this up on a **different computer**, the first `git push` will likely ask for a username and password. GitHub no longer accepts your regular password here — instead:
-- Easiest option: install [GitHub Desktop](https://desktop.github.com), sign in there once, and it'll handle authentication for you (you can still use the `git` commands in Terminal afterward, or just use GitHub Desktop's own commit/push buttons).
-- Or ask Claude Code to help you generate a Personal Access Token on GitHub and use that as the password.
+- `JenH19` signs in with an SSH key, `~/.ssh/id_ed25519_jenh19`. `~/.ssh/config` maps `github.com` to that key.
+- Her other site's repo uses the same key, so VS Code never asks for a password in either workspace.
+- Check the connection with `ssh -T git@github.com`. It should say `Hi JenH19!`.
+- If a push fails with a **403 / permission denied** error, the remote was probably switched back to HTTPS. Fix it with:
+  ```bash
+  git remote set-url origin git@github.com:phriar/clarity.git
+  ```
+- On a **different computer**, copy the SSH key over (or create a new one and add it at GitHub → Settings → SSH keys while signed in as `JenH19`), and set up `~/.ssh/config` the same way.
 
 ### Pulling updates (only needed if you edit from more than one computer)
 
