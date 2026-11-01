@@ -54,6 +54,8 @@
     font-size: 0.88rem; line-height: 1.6;
   }
   .btn-sending { opacity: 0.6; pointer-events: none; }
+  .form-privacy-note { font-size: 0.78rem; line-height: 1.6; color: var(--mid); margin-top: 1rem; }
+  .form-privacy-note a { color: var(--wine); }
 
   @media (max-width: 860px) {
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -160,6 +162,7 @@
             <input type="text" name="subject" placeholder="Subject">
             <textarea name="message" placeholder="Tell us about yourself and what brought you here..." required></textarea>
             <button type="submit" class="btn" id="submitBtn">Send Message</button>
+            <p class="form-privacy-note">By submitting this form, you agree that Clarity Uncorked may use the information you provide to respond to your inquiry. See our <a href="/legal-privacy.html">Legal &amp; Privacy Policy</a> for information about how we handle your personal data and your rights.</p>
           </div>
         </form>
         <div class="success-msg" id="successMsg">
@@ -185,8 +188,9 @@
       <a href="contact.html">Contact</a>
       <a href="https://www.instagram.com/clarityuncorked" target="_blank">Instagram</a>
       <a href="mailto:hello@clarityuncorked.com">Email</a>
+      <a href="/legal-privacy.html">Legal &amp; Privacy</a>
     </div>
-    <div class="copy">© 2025 Clarity Uncorked · Bordeaux, France</div>
+    <div class="copy">© 2025–2026 Clarity Uncorked · Bordeaux, France</div>
   </footer>
 
 </div>
